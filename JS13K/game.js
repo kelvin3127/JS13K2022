@@ -1,96 +1,226 @@
-
-let mapHeight = 600;
-let mapLength = 600;
-
-//Characters
-let player;
-let monsters = []
-let boss;
-
-//Spawn time
-let monsterSpawnTime = 300;
-let monsterMaxSpeed = 2;
-let bossMaxSpeed = 1;
-let frame = 0;
-
-//Score
-let score = 0;
+import Start from './start';
+import End from './End';
+import Player from './player';
+import Mouse from './mouse';
+import Keyboard from './keyboard';
+import Gamestate from './gamestate';
+import Timer from './timer';
 
 
+class Game {
 
-function setup() {
-    //Create Canvas
-  createCanvas(mapHeight, mapLength);
-    //Create Player
-  player = new Player();
-}
+    constructor() {
 
-//Player shoot function
-function mouseClicked() {
-    player.shoot();
-}
+        //Defaults
+        this.mouse = new Mouse();
+        this.keyboard = new Keyboard();
+        this.start = new Start();
+        this.end = End();
+        this.timer = null;
 
-function draw() {
-  background(100, 100, 100);
-  //rectMode(CENTER);
-    //Draw Player
-  player.sprite();
-    //Event Listener for player movement
-  player.movement();
+        //The Game States
+        this.gameState = new Gamestate([
+			'PLAYING',
+			'PAUSED',
+			'START',
+			'END',
+		]);
 
-  //for loop to make monsters
-  for ( let i = monsters.length - 1; i >= 0; i--) {
-    monsters[i].sprite();
-    monsters[i].movement();
+        //Default State Start
+        this.state.set('START');
 
-    if (monsters[i].attacked()) {
-        restart();
-        break;
+        //Map Size
+        this.width = 1500;
+        this.height = 1500;
+
+        //Canvas
+        this.canvas = document.getElementById('mainCanvas');
+        this.canvas.width = this.width;
+		this.canvas.height = this.height;
+
+        //Canvas Context
+        this.context = this.canvas.getContext('2d');
+
+        //Frame Count
+        this.frame = 0;
+
+        this.backgroundColor = '#666';
+
+        //Game Objects
+        this.player = null;  
+
+        // Timestamp
+        this.lastTimestamp = new Date();
+		this.deltaTime = 0;
+        
     }
 
-    //if hits remove monster
-    if (player.hasShot(monsters[i])) {
-        //Add point
-        score++;
-        monsters.splice(i, 1);
+	loop() {
+
+		//Update Frame
+		this.frame++;
+
+		//Current Time
+		const now = new Date();
+
+		//Find DeltaTime
+  	    this.deltaTime = now - this.lastTimestamp;
+
+		//Draw State
+		this.draw();
+
+		//Update State
+		this.update(this.deltaTime);
+
+		//Save Timestamp
+  	this.lastTimestamp = now;
+
+		//Request Frame and Update Loop
+		requestAnimationFrame(this.loop.bind(this));
+
+	}
+
+    run() {
+
+		//Game Loop
+		this.loop();
+
+	}
+
+    play() {
+
+        this.player = null;
+		this.world = null;
+
+        //Player
+        this.player = new Player(0, 0);
+
+        this.world = new World({
+            game: this,
+            r: 10,
+            size: 140,
+        });
+
+        this.timer = new Timer();
+
+        this.messages.add('Survive Death', 60*2);
+
+        this.state.set('PLAYING');
+
     }
-  }
 
-  //Monster Difficulty Spawn
-  if (frame >= monsterSpawnTime) {
+    update() {
 
-    //Make Boss
-    // if (frame === 500) {
-    //     boss = new Boss(1);
-    //     boss.sprite();
-    //     boss.movement();
-    // }
-    
-    monsters.push(new Monster(2));
-    monsterSpawnTime *= 0.95;
-    frame = 0;
-  }
+		//Check State
+		switch (this.state.get()) {
+			case 'MENU':
 
-  //Monster Difficulty Speed
-  if (frameCount % 1000 == 0) {
-    monsterMaxSpeed += 0.1;
-    bossMaxSpeed += 0.01;
-  }
+				//Update Start
+				this.start.update(this);
 
-  frame++;
+				break;
+			case 'PLAYING':
 
-  //Show Score
-  textAlign(CENTER);
-  textSize(40);
-  text(score, width/2, 100);
-    
+				this.wind = Math.sin(this.frame / 40);
+
+				// update steps
+				// this.steps.forEach(step => {
+				// 	step.update(this);
+				// });
+		
+				//Update Player
+				this.player.update(this);
+
+				//Clear Keyboard
+				this.keyboard.clear();
+
+				//Update Timer
+				this.timer.update();
+
+				this.messages.update();
+
+				break;
+			case 'FINISHED':
+
+				//Update End
+				this.end.update(this);
+
+			default:
+
+		}
+
+	}
+
+    draw() {
+
+		//Clear Canvas
+		this.clear();
+
+		//Check State
+		switch (this.state.get()) {
+			case 'START':
+
+				//Draw Start
+				this.start.draw(this);
+
+				break;
+			case 'PLAYING': {
+
+				//Get Translate Coords
+				const x = this.width/2 - this.player.x;
+				const y = this.height/2 - this.player.y;
+
+				//Translate Context
+				this.context.translate(x, y);
+
+				// draw the player private function
+				this.player.drawBefore(this);
+
+				//Draw Player
+				this.player.draw(this);
+
+				//Draw World
+				this.world.draw(this);
+
+				//Translate Context Back
+				this.context.translate(-x, -y);
+
+				// draw the darkness around the player
+				//this.drawDarkness();
+
+				//Draw Timer
+				this.timer.draw(this);
+
+				//Draw Message
+				this.messages.draw(this);
+
+				break;
+			}
+			case 'PAUSED':
+
+				// draw pause menu
+				this.drawPause();
+
+				break;
+			case 'END':
+
+				this.end.draw(this);
+
+				break;
+			default:
+
+		}
+
+	}
+
+    pause() {
+		this.state = PAUSED;
+	}
+
+	unpause() {
+		this.state = PAUSED;
+	}
+
 }
 
-function restart() {
-    player = new Player();
-    monsters = [];
-    monsterSpawnTime = 300;
-    monsterMaxSpeed = 2;
-    bossMaxSpeed = 1;
-    score = 0;
-}
+export default Game;
