@@ -7,6 +7,11 @@ class Player extends PlayerPic {
     this.radius = 12;
     this.speed = 0.5;
     this.colliding = false;
+    this.death = false;
+    this.health = 100;
+    this.ammo = 0;
+
+
     }
 
 
@@ -21,4 +26,25 @@ class Player extends PlayerPic {
         }
 
     }
+
+    //pickup health or ammo
+    onPickup(item) {
+        if (item == "health" ) {
+            this.health += 20;
+        }
+        else if (item == "ammo") {
+            this.ammo += 10;
+        }
+    }
+
+    //On hit Lose health
+    onHit(health) (
+        if ( health <= 0) {
+            death = true;
+            //chagne gamestate
+        }
+    )
+
 }
+
+export default Player;
