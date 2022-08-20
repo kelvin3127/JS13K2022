@@ -1,4 +1,4 @@
-class Start {
+export default class Start {
 
     update(game) {
 
@@ -28,5 +28,3 @@ class Start {
     
       }
 }
-
-export default Start;

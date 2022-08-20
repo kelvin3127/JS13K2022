@@ -1,4 +1,4 @@
-class End {
+export default class End {
 
     update(game) {
 
@@ -35,5 +35,3 @@ class End {
 
     }
 }
-
-export default End;

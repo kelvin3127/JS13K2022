@@ -1,4 +1,4 @@
-class Timer {
+export default class Timer {
 
     constructor() {
 
@@ -27,5 +27,3 @@ class Timer {
     }
 
 }
-
-export default Timer;

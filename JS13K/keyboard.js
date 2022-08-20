@@ -1,4 +1,4 @@
-class Keyboard {
+export default class Keyboard {
 
     constructor() {
         this.pressed = {};
@@ -37,6 +37,30 @@ class Keyboard {
 
     }
 
+    keydown(event) {
+
+        if (
+            !this.isPressed(event.which) ||
+            !this.isPressed(event.keyCode) ||
+            !this.isPressed(event.key) ||
+            !this.isPressed(event.code)
+        ) {
+            // save clicked key
+            this.clickedKeys[event.which] = true;
+            this.clickedKeys[event.keyCode] = true;
+            this.clickedKeys[event.key] = true;
+            this.clickedKeys[event.code] = true;
+        }
+
+        // save pressed key
+        this.pressedKeys[event.which] = true;
+        this.pressedKeys[event.keyCode] = true;
+        this.pressedKeys[event.key] = true;
+        this.pressedKeys[event.code] = true;
+
+	}
+
+
     keyup(event) {
 
         this.pressedKeys[event.which] = false;
@@ -58,5 +82,3 @@ class Keyboard {
     }
 
 }
-
-export default Keyboard;

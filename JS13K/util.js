@@ -32,6 +32,7 @@ export const distanceBetween = (self, obj) => {
 
 };
 
+//formerly 'rad'
 export const arcTan = (x1, y1, x2, y2) => {
 
   //calc delta

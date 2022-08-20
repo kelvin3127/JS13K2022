@@ -1,4 +1,4 @@
-class Gamestate {
+export default class Gamestate {
 
     constructor(states) {
   
@@ -58,5 +58,3 @@ class Gamestate {
     }
   
   }
-
-  export default Gamestate;

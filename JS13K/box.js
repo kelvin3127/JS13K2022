@@ -1,4 +1,4 @@
-import { arcTan, calcLight } from './util';
+import { arcTan, calcLight } from './util.js';
 
 export default class Box {
 

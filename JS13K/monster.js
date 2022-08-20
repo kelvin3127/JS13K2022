@@ -1,4 +1,4 @@
-class Monster {
+export default class Monster {
 
     constructor() {
         this.radius = 12;
@@ -8,15 +8,10 @@ class Monster {
         this.health = 100;
     }
 
-    onHit(health) (
+    onHit(health) {
         if ( health <= 0) {
             death = true;
             //chagne gamestate
         }
-    )
-
-
-
+    }
 }
-
-export default Monster;

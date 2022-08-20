@@ -1,4 +1,4 @@
-class Mouse {
+export default class Mouse {
 
     constructor() {
 
@@ -14,4 +14,3 @@ class Mouse {
     }
 }
 
-export default Mouse;

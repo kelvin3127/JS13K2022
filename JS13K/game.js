@@ -1,14 +1,14 @@
-import Start from './start';
-import End from './End';
-import Player from './player';
-import Mouse from './mouse';
-import Keyboard from './keyboard';
-import Gamestate from './gamestate';
-import Timer from './timer';
-import World from './world';
+import Start from './start.js';
+import End from './end.js';
+import Player from './player.js';
+import Mouse from './mouse.js';
+import Keyboard from './keyboard.js';
+import Gamestate from './gamestate.js';
+import Timer from './timer.js';
+import World from './world.js';
+import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
-
-class Game {
+export default class Game {
 
     constructor() {
 
@@ -16,7 +16,7 @@ class Game {
         this.mouse = new Mouse();
         this.keyboard = new Keyboard();
         this.start = new Start();
-        this.end = End();
+        this.end = new End();
         this.timer = null;
 
         //The Game States
@@ -28,7 +28,7 @@ class Game {
 		]);
 
         //Default State Start
-        this.state.set('START');
+        this.gameState.set('START');
 
         //Map Size
         this.width = 1500;
@@ -42,6 +42,9 @@ class Game {
         //Canvas Context
         this.context = this.canvas.getContext('2d');
 
+		//World seed
+		this.seed = generateSeed();
+
         //Frame Count
         this.frame = 0;
 
@@ -54,6 +57,8 @@ class Game {
         this.lastTimestamp = new Date();
 		this.deltaTime = 0;
         
+		//FOV gradient
+
     }
 
 	loop() {
@@ -74,7 +79,7 @@ class Game {
 		this.update(this.deltaTime);
 
 		//Save Timestamp
-  	this.lastTimestamp = now;
+  		this.lastTimestamp = now;
 
 		//Request Frame and Update Loop
 		requestAnimationFrame(this.loop.bind(this));
@@ -106,14 +111,14 @@ class Game {
 
         this.messages.add('Survive Death', 60*2);
 
-        this.state.set('PLAYING');
+        this.gameState.set('PLAYING');
 
     }
 
     update() {
 
 		//Check State
-		switch (this.state.get()) {
+		switch (this.gameState.get()) {
 			case 'MENU':
 
 				//Update Start
@@ -128,6 +133,8 @@ class Game {
 				// this.steps.forEach(step => {
 				// 	step.update(this);
 				// });
+
+
 		
 				//Update Player
 				this.player.update(this);
@@ -158,7 +165,7 @@ class Game {
 		this.clear();
 
 		//Check State
-		switch (this.state.get()) {
+		switch (this.gameState.get()) {
 			case 'START':
 
 				//Draw Start
@@ -215,13 +222,21 @@ class Game {
 	}
 
     pause() {
-		this.state = PAUSED;
+		this.gameState = PAUSED;
 	}
 
 	unpause() {
-		this.state = PAUSED;
+		this.gameState = PAUSED;
+	}
+
+	clear() {
+
+		// clear canvas
+		//this.context.clearRect(0, 0, this.width, this.height);
+
+		// fill with ambient color
+		this.context.fillStyle = this.backgroundColor;
+		this.context.fillRect(0, 0, this.width, this.height);
 	}
 
 }
-
-export default Game;

@@ -1,4 +1,4 @@
-class Bullet {
+export default class Bullet {
     //x, y, angle of the player
     constructor(x, y, angle) {
       this.x = x;

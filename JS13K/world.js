@@ -1,8 +1,7 @@
-import Box from './box';
-import Tree from './tree';
+import Tree from './tree.js';
 import {
   seededRandomBetween,
-  } from './util';
+  } from './util.js';
 
 //formerly 'Grid' class
 export default class World {
