@@ -5,6 +5,7 @@ import Mouse from './mouse';
 import Keyboard from './keyboard';
 import Gamestate from './gamestate';
 import Timer from './timer';
+import World from './world';
 
 
 class Game {

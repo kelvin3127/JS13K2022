@@ -1,4 +1,4 @@
-class Statemashine {
+class Gamestate {
 
     constructor(states) {
   

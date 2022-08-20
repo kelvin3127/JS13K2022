@@ -4,7 +4,8 @@ import {
   seededRandomBetween,
   } from './util';
 
-export default class Grid {
+//formerly 'Grid' class
+export default class World {
 
   constructor({r = 0, size = 100, game = {seed: ''}}){
 

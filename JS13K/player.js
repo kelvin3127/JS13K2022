@@ -1,4 +1,4 @@
-class Player extends PlayerPic {
+export default class Player {
 
     constructor( x = 0, y = 0) {
 
@@ -38,13 +38,10 @@ class Player extends PlayerPic {
     }
 
     //On hit Lose health
-    onHit(health) (
+    onHit(health) {
         if ( health <= 0) {
             death = true;
             //chagne gamestate
         }
-    )
-
-}
-
-export default Player;
+      }
+    }
