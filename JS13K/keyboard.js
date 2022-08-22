@@ -1,8 +1,8 @@
 export default class Keyboard {
 
     constructor() {
-        this.pressed = {};
-        this.clicked = {};
+        this.pressedKeys = {};
+        this.clickedKeys = {};
 
         this.space = "Space";
         this.ArrowLeft = "arrowLeft";
@@ -16,57 +16,52 @@ export default class Keyboard {
 
     clearKeys() {
 
-        if (
-			!this.isPressed(event.which) ||
-			!this.isPressed(event.keyCode) ||
-			!this.isPressed(event.key) ||
-			!this.isPressed(event.code)
-		) {
-			
-			this.clickedKeys[event.which] = true;
-			this.clickedKeys[event.keyCode] = true;
-			this.clickedKeys[event.key] = true;
-			this.clickedKeys[event.code] = true;
-		}
-
-		
-		this.pressedKeys[event.which] = true;
-		this.pressedKeys[event.keyCode] = true;
-		this.pressedKeys[event.key] = true;
-		this.pressedKeys[event.code] = true;
-
+        this.clickedKeys = {};
     }
 
     keydown(event) {
 
-        if (
-            !this.isPressed(event.which) ||
-            !this.isPressed(event.keyCode) ||
-            !this.isPressed(event.key) ||
-            !this.isPressed(event.code)
-        ) {
-            // save clicked key
-            this.clickedKeys[event.which] = true;
-            this.clickedKeys[event.keyCode] = true;
-            this.clickedKeys[event.key] = true;
-            this.clickedKeys[event.code] = true;
+        console.log(event.keyCode);
+        
+        var keyCode = event.keyCode;
+        switch (keyCode) {
+          case 68: //d
+            this.pressedKeys['d'] = true;
+            break;
+          case 83: //s
+            this.pressedKeys['s'] = true;
+            break;
+          case 65: //a
+            this.pressedKeys['a'] = true;
+            break;
+          case 87: //w
+            this.pressedKeys['w'] = true;
+            break;
+          case 32: //space
+            this.pressedKeys['space'] = true;
         }
-
-        // save pressed key
-        this.pressedKeys[event.which] = true;
-        this.pressedKeys[event.keyCode] = true;
-        this.pressedKeys[event.key] = true;
-        this.pressedKeys[event.code] = true;
-
 	}
 
 
     keyup(event) {
+        var keyCode = event.keyCode;
+        switch (keyCode) {
+          case 68: //d
+            this.pressedKeys['d'] = false;
+            break;
+          case 83: //s
+            this.pressedKeys['s'] = false;
+            break;
+          case 65: //a
+            this.pressedKeys['a'] = false;
+            break;
+          case 87: //w
+            this.pressedKeys['w'] = false;
+            break;
+          case 32: //space
+            this.pressedKeys['space'] = false;
+        }
 
-        this.pressedKeys[event.which] = false;
-		this.pressedKeys[event.keyCode] = false;
-		this.pressedKeys[event.key] = false;
-		this.pressedKeys[event.code] = false;
     }
 
     isPressed(key) {
@@ -77,7 +72,7 @@ export default class Keyboard {
 
     isClicked(key) {
 
-        return this.clickedKeys[Key];
+        return this.clickedKeys[key];
 
     }
 

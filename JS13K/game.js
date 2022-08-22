@@ -129,13 +129,6 @@ export default class Game {
 
 				this.wind = Math.sin(this.frame / 40);
 
-				// update steps
-				// this.steps.forEach(step => {
-				// 	step.update(this);
-				// });
-
-
-		
 				//Update Player
 				this.player.update(this);
 

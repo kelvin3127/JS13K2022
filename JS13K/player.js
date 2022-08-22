@@ -23,22 +23,22 @@ export default class Player {
 
       const { keyboard, mouse} = game;
 
-      if (keyboard.isPressed(keyboard.ARROW_LEFT) || keyboard.isPressed('a')) {
+      if (keyboard.isPressed('a')) {
         this.vx -= this.speed;
       }
   
       // check for right keys
-      if (keyboard.isPressed(keyboard.ARROW_RIGHT) || keyboard.isPressed('d')) {
+      if (keyboard.isPressed('d')) {
         this.vx += this.speed;
       }
   
       // check for up keys
-      if (keyboard.isPressed(keyboard.ARROW_UP) || keyboard.isPressed('w')) {
+      if (keyboard.isPressed('w')) {
         this.vy -= this.speed;
       }
   
       // check for down keys
-      if(keyboard.isPressed(keyboard.ARROW_DOWN) || keyboard.isPressed('s')){
+      if(keyboard.isPressed('s')){
         this.vy += this.speed;
       }
       this.radian = Math.atan2(this.vy, this.vx);
