@@ -173,42 +173,96 @@ drawStar(340, 130, 8, 5, 7.5);
 context.fillStyle = '#6e0b0b';
 context.fill();
 
-//Left hand
-context.rotate(20 * Math.PI / 180);
-context.beginPath();
-makeCurvedRect(350, -100, 15, 60);
-context.fillStyle = '#6e0b0b';
-context.fill();
-context.rotate(-35 * Math.PI / 180);
-
-//Right hand
-context.rotate(-45 * Math.PI / 180);
-context.beginPath();
-makeCurvedRect(40, 100, 15, 60);
-context.fillStyle = '#6e0b0b';
-context.fill();
-context.rotate(35 * Math.PI / 180);
-
-
-
-
-
-
+//Left Hand 
+//Right Hand
 
 //*********************Bullet************************
 
 //Bullet Body
 context.beginPath();
-context.rect(200, 30, 5, 10);
+context.rect(225, 60, 5, 10);
 context.fillStyle = 'black';
 context.fill();
 
 //Bullet Head
 context.beginPath();
-context.moveTo(200, 30);
-context.quadraticCurveTo(202.5, 20, 205, 30);
+context.moveTo(225, 60);
+context.quadraticCurveTo(227.5, 50, 230, 60);
+context.closePath();
 context.fillStyle = 'black';
 context.fill();
+
+
+
+
+//*************Reaper**********************
+
+
+//Weapon
+context.rotate(-20 * Math.PI / 180);
+context.beginPath();
+context.rect(465, 245, 70, 5);
+context.rotate(20 * Math.PI / 180);
+context.fillStyle = '#b2610d';
+context.fill();
+
+context.beginPath();
+context.moveTo( 585, 50 );
+context.quadraticCurveTo( 565, 25 ,530 , 30 );
+context.stroke();
+context.quadraticCurveTo( 565, 30 ,580 , 50 );
+context.fillStyle = '#eeeeee'
+context.fill();
+
+context.beginPath();
+context.moveTo(580, 50);
+context.quadraticCurveTo(565, 30 ,530 , 30 );
+context.quadraticCurveTo( 565, 32 ,578 , 52);
+context.fillStyle = '#cc0000';
+context.fill();
+
+
+//Right Arm
+context.beginPath();
+context.arc(565, 65, 7, 0, 2 * Math.PI);
+context.fillStyle = '#000000';
+context.fill();
+
+//Left Arm
+context.beginPath();
+context.arc(530, 78, 7, 0, 2 * Math.PI);
+context.fillStyle = '#000000';
+context.fill();
+
+
+//head
+context.beginPath(); 
+context.arc(550, 80, 19, 0, 2 * Math.PI);
+context.stroke();
+context.fillStyle = '#eeeeee';
+context.fill();
+
+
+context.beginPath(); 
+context.arc(550, 85, 20, 0, 2 * Math.PI);
+context.fillStyle = '#000000';
+context.fill();
+
+context.beginPath();    
+context.moveTo(530, 85);
+context.bezierCurveTo(520, 115, 515, 100, 510, 120);
+context.bezierCurveTo(520, 100, 580, 120, 565, 75);
+context.fillStyle = '#000000';
+context.fill();
+
+
+//***************Wall*******************
+context.beginPath();
+
+
+
+
+
 
 
 
