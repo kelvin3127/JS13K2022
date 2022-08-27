@@ -34,15 +34,15 @@ export default class Tree {
     game.context.fill();
 
     // draw shadow
-    const rad0 = rad(game.player.x, game.player.y, this.x, this.y);
+    const rad0 = arcTan(game.player.x, game.player.y, this.x, this.y);
     let x1 = this.x + this.radius * Math.cos(rad0 - Math.PI/2 );
     let y1 = this.y + this.radius * Math.sin(rad0 - Math.PI/2 );
     let x2 = this.x + this.radius * Math.cos(rad0 + Math.PI/2 );
     let y2 = this.y + this.radius * Math.sin(rad0 + Math.PI/2 );
-    const rad1 = rad(x2, y2, game.player.x, game.player.y);
+    const rad1 = arcTan(x2, y2, game.player.x, game.player.y);
     let x3 = x2 + Math.cos(rad1) * 500;
     let y3 = y2 + Math.sin(rad1) * 500;
-    const rad2 = rad(x1, y1, game.player.x, game.player.y);
+    const rad2 = arcTan(x1, y1, game.player.x, game.player.y);
     let x4 = x1 + Math.cos(rad2) * 500;
     let y4 = y1 + Math.sin(rad2) * 500;
 

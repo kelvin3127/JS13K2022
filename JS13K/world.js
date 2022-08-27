@@ -61,7 +61,7 @@ export default class World {
       }
     }
 
-    game.debugger.add(`Trees: ${drawCount}`);
+    //game.debugger.add(`Trees: ${drawCount}`);
 
   }
 

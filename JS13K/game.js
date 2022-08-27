@@ -28,7 +28,7 @@ export default class Game {
 		]);
 
         //Default State Start
-        this.gameState.set('START');
+        this.gameState.set('MENU');
 
         //Map Size
         this.width = 1500;
@@ -109,7 +109,7 @@ export default class Game {
 
         this.timer = new Timer();
 
-        this.messages.add('Survive Death', 60*2);
+        //this.messages.add('Survive Death', 60*2);
 
         this.gameState.set('PLAYING');
 
@@ -120,7 +120,6 @@ export default class Game {
 		//Check State
 		switch (this.gameState.get()) {
 			case 'MENU':
-				console.log('menu');
 				//Update Start
 				this.start.update(this);
 
@@ -133,12 +132,12 @@ export default class Game {
 				this.player.update(this);
 
 				//Clear Keyboard
-				this.keyboard.clear();
+				this.keyboard.clearKeys();
 
 				//Update Timer
 				this.timer.update();
 
-				this.messages.update();
+				//this.messages.update();
 
 				break;
 			case 'END':
@@ -174,8 +173,9 @@ export default class Game {
 				//Translate Context
 				this.context.translate(x, y);
 
-				// draw the player private function
-				this.player.drawBefore(this);
+				//Draw NPCs
+
+				//this.player.drawBefore(this);
 
 				//Draw Player
 				this.player.draw(this);
@@ -193,7 +193,7 @@ export default class Game {
 				this.timer.draw(this);
 
 				//Draw Message
-				this.messages.draw(this);
+				//this.messages.draw(this);
 
 				break;
 			}
