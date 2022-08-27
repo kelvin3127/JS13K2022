@@ -15,7 +15,7 @@ export default class Gamestate {
           states.forEach(state => {
             this.validStates.push(state.toUpperCase());
           });
-  
+
         } else if (typeof states === 'string') {
   
           this.validStates.push(states);
@@ -42,7 +42,6 @@ export default class Gamestate {
     set(state) {
   
       if(this.validStates.indexOf(state.toUpperCase()) > -1) {
-  
         this.currentState = state.toUpperCase();
   
       } else {

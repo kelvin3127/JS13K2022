@@ -4,7 +4,7 @@ export default class Keyboard {
         this.pressedKeys = {};
         this.clickedKeys = {};
 
-        this.space = "Space";
+        this.Space = "space";
         this.ArrowLeft = "arrowLeft";
         this.ArrowRight = "arrowRight";
         this.ArrowUp = "arrowUp";
@@ -15,13 +15,10 @@ export default class Keyboard {
     }
 
     clearKeys() {
-
         this.clickedKeys = {};
     }
 
     keydown(event) {
-
-        console.log(event.keyCode);
         
         var keyCode = event.keyCode;
         switch (keyCode) {
@@ -65,7 +62,7 @@ export default class Keyboard {
     }
 
     isPressed(key) {
-
+        console.log(this.pressedKeys[key]);
         return this.pressedKeys[key];
 
     }

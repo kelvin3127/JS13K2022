@@ -1,9 +1,9 @@
 export default class Start {
 
     update(game) {
-
-        if(game.keyboard.ispressed(game.keyboard.Space)) {
-            game.play();
+        if(game.keyboard.isPressed(game.keyboard.Space)) {
+          console.log('test');
+          game.play();
         }
     }
 
@@ -11,7 +11,6 @@ export default class Start {
 
         game.context.fillStyle = 'black';
         game.context.fillRect(0, 0, game.width, game.height);
-    
         game.context.fillStyle = '#FF005A';
         game.context.textAlign = 'center';
         game.context.font = '150px Serif';

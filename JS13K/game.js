@@ -23,7 +23,7 @@ export default class Game {
         this.gameState = new Gamestate([
 			'PLAYING',
 			'PAUSED',
-			'START',
+			'MENU',
 			'END',
 		]);
 
@@ -120,7 +120,7 @@ export default class Game {
 		//Check State
 		switch (this.gameState.get()) {
 			case 'MENU':
-
+				console.log('menu');
 				//Update Start
 				this.start.update(this);
 
@@ -141,7 +141,7 @@ export default class Game {
 				this.messages.update();
 
 				break;
-			case 'FINISHED':
+			case 'END':
 
 				//Update End
 				this.end.update(this);
@@ -159,7 +159,7 @@ export default class Game {
 
 		//Check State
 		switch (this.gameState.get()) {
-			case 'START':
+			case 'MENU':
 
 				//Draw Start
 				this.start.draw(this);
