@@ -13,7 +13,6 @@ export default class Game {
     constructor() {
 
         //Defaults
-        this.mouse = new Mouse();
         this.keyboard = new Keyboard();
         this.start = new Start();
         this.end = new End();
@@ -31,13 +30,15 @@ export default class Game {
         this.gameState.set('MENU');
 
         //Map Size
-        this.width = 1000;
-        this.height = 1000;
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
 
         //Canvas
         this.canvas = document.getElementById('mainCanvas');
         this.canvas.width = this.width;
 		this.canvas.height = this.height;
+		this.mouse = new Mouse(this.canvas);
+
 		console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
 		console.log(this.canvas.height, this.canvas.width);
 		//Canvas Context

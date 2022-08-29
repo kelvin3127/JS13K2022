@@ -73,9 +73,9 @@ export default class Player {
       const radian = Math.atan2(this.vy, this.vx);
       const radianTest = Math.atan2(mouse.y - this.y, mouse.x - this.x);
       
-      console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
+      //console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
       //console.log(this.x,this.y);
-
+      console.log(mouse.x,mouse.y);
       // get change
       let diff = radian - this.radian;
       let diffTest = radianTest - this.radianTest;
