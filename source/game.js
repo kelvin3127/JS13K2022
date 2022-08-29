@@ -31,15 +31,16 @@ export default class Game {
         this.gameState.set('MENU');
 
         //Map Size
-        this.width = 1500;
-        this.height = 1500;
+        this.width = 1000;
+        this.height = 1000;
 
         //Canvas
         this.canvas = document.getElementById('mainCanvas');
         this.canvas.width = this.width;
 		this.canvas.height = this.height;
-
-        //Canvas Context
+		console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
+		console.log(this.canvas.height, this.canvas.width);
+		//Canvas Context
         this.context = this.canvas.getContext('2d');
 
 		//World seed

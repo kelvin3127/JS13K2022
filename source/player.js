@@ -71,10 +71,10 @@ export default class Player {
 
       // calculate radian
       const radian = Math.atan2(this.vy, this.vx);
-      const radianTest = Math.atan2(mouse.y - (height/2), -(mouse.x - (width/2)));
+      const radianTest = Math.atan2(mouse.y - this.y, mouse.x - this.x);
       
+      console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
       //console.log(this.x,this.y);
-
 
       // get change
       let diff = radian - this.radian;
@@ -96,8 +96,6 @@ export default class Player {
       // apply rotation with lerp
       this.radian += diff * 1;
       this.radianTest += diffTest *1;
-
-      console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
 
 
       // update position
@@ -158,7 +156,22 @@ export default class Player {
         game.context.fill();
         return;
       }
-  
+
+
+      game.context.beginPath();
+      const p = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
+      game.context.moveTo( p.x, p.y );
+      game.context.lineTo( game.mouse.x, game.mouse.y);
+      game.context.strokeStyle = "#000000";
+      game.context.stroke();
+      
+
+
+      game.context.fillStyle = '#000000';
+      game.context.beginPath();
+      game.context.arc(game.canvas.width/2, game.canvas.height/2, 100,0, 2*Math.PI);
+      game.context.fill();
+
       // draw shadow
       game.context.fillStyle = 'rgba(0,0,0,0.2)';
       game.context.beginPath();
