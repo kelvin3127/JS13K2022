@@ -39,7 +39,6 @@ export default class Keyboard {
         }
 	}
 
-
     keyup(event) {
         var keyCode = event.keyCode;
         switch (keyCode) {

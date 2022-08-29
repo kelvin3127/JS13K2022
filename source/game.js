@@ -83,7 +83,6 @@ export default class Game {
 
 		//Request Frame and Update Loop
 		requestAnimationFrame(this.loop.bind(this));
-
 	}
 
     run() {

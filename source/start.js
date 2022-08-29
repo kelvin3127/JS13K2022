@@ -2,7 +2,7 @@ export default class Start {
 
     update(game) {
         if(game.keyboard.isPressed(game.keyboard.Space)) {
-          console.log('test');
+          //console.log('test');
           game.play();
         }
     }

@@ -8,8 +8,13 @@ export default class Player {
     this.y = 0;
     this.vx = 0;
     this.vy = 0;
+    this.dx = 0;
+    this.dy = 0;
     this.radius = 12;
-    this.radian = Math.PI*2*Math.random();
+
+    this.radian = 0
+    this.radianTest = 0;
+    
     this.speed = 0.5;
     this.colliding = false;
     this.death = false;
@@ -19,34 +24,7 @@ export default class Player {
 
     }
 
-
     resolveCollision(obj) {}
-
-    update(game) {
-
-      const { keyboard, mouse} = game;
-
-      if (keyboard.isPressed('a')) {
-        this.vx -= this.speed;
-      }
-  
-      // check for right keys
-      if (keyboard.isPressed('d')) {
-        this.vx += this.speed;
-      }
-  
-      // check for up keys
-      if (keyboard.isPressed('w')) {
-        this.vy -= this.speed;
-      }
-  
-      // check for down keys
-      if(keyboard.isPressed('s')) {
-        this.vy += this.speed;
-      }
-      this.radian = Math.atan2(this.vy, this.vx);
-  
-    }
 
     //pickup health or ammo
     onPickup(item) {
@@ -69,6 +47,7 @@ export default class Player {
     update(game){
       // get relevant variables
       const {keyboard, mouse} = game;
+      const {width, height} = game;
 
       // check for left keys
       if (keyboard.isPressed('a')) {
@@ -92,9 +71,15 @@ export default class Player {
 
       // calculate radian
       const radian = Math.atan2(this.vy, this.vx);
+      const radianTest = Math.atan2(mouse.y - (height/2), -(mouse.x - (width/2)));
+      
+      //console.log(this.x,this.y);
+
 
       // get change
       let diff = radian - this.radian;
+      let diffTest = radianTest - this.radianTest;
+
 
       if(diff < -Math.PI){
         diff += Math.PI*2;
@@ -102,8 +87,18 @@ export default class Player {
         diff -= Math.PI*2;
       }
 
+      if(diffTest < -Math.PI){
+        diffTest += Math.PI*2;
+      } else if (diffTest > Math.PI) {
+        diffTest -= Math.PI*2;
+      }
+
       // apply rotation with lerp
       this.radian += diff * 1;
+      this.radianTest += diffTest *1;
+
+      console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
+
 
       // update position
       this.x += this.vx;
