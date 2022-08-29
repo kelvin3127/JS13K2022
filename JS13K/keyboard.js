@@ -62,7 +62,7 @@ export default class Keyboard {
     }
 
     isPressed(key) {
-        console.log(this.pressedKeys[key]);
+        //console.log(this.pressedKeys[key]);
         return this.pressedKeys[key];
 
     }
