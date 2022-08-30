@@ -71,11 +71,9 @@ export default class Player {
 
       // calculate radian
       const radian = Math.atan2(this.vy, this.vx);
-      const radianTest = Math.atan2(mouse.y - this.y, mouse.x - this.x);
+      const radianTest = Math.atan2(game.mouse.y, game.mouse.x);
       
-      //console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
-      //console.log(this.x,this.y);
-      console.log(mouse.x,mouse.y);
+      //console.log("keyborad:" + radian * 180/Math.PI, "mouse:" +radianTest * 180/Math.PI);
       // get change
       let diff = radian - this.radian;
       let diffTest = radianTest - this.radianTest;
@@ -157,8 +155,65 @@ export default class Player {
         return;
       }
 
-
+      //This is the line pointing to mouse/player
       game.context.beginPath();
+      const p = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
+      game.context.moveTo( p.x, p.y );
+      game.context.lineTo( game.mouse.x, game.mouse.y);
+      game.context.strokeStyle = "#000000";
+      game.context.stroke();
+     
+      
+      game.context.beginPath();
+      game.context.arc(game.canvas.width/2, game.canvas.height/2, 100,0, 2*Math.PI);
+      game.context.fillStyle = '#000000';
+      game.context.fill();
+
+      //Left hand
+      const p3 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
+      game.context.rect(p3.x - 20, p3.y -40, 8, 40);
+      game.context.fillStyle = '#C02942';
+      game.context.fill();
+      
+      //Right hand
+      game.context.rect(p3.x + 13, p3.y - 40, 8, 40);
+      game.context.fillStyle = '#C02942';
+      game.context.fill();
+
+      //Gun
+      const p4 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
+      game.context.rect(p4.x - 5, p4.y - 55, 10, 30);
+      game.context.fillStyle = '#929292';
+      game.context.fill();
+
+      game.context.rect(p4.x - 2.75, p4.y - 65, 5, 10);
+      game.context.fillStyle = '#929292';
+      game.context.fill();
+
+      //Torso
+      const p2 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
+      game.context.rect(p2.x - 25, p2.y- 10, 50, 20);
+      game.context.fillStyle = '#7F9EA1';
+      game.context.fill();
+
+      //Head
+      game.context.beginPath();
+      const p0 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
+      game.context.arc( p0.x, p0.y, 15, 0, 2 * Math.PI);
+      game.context.fillStyle = '#F1D4AF';
+      game.context.fill();
+
+      //Hair
+      game.context.beginPath();
+      const p1 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
+      game.context.arc( p0.x, p0.y + 5, 15, 0, 2* Math.PI);
+      game.context.fillStyle = '#4d2600';
+      game.context.fill();
+
+    }
+}
+
+   /* game.context.beginPath();
       const p = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
       game.context.moveTo( p.x, p.y );
       game.context.lineTo( game.mouse.x, game.mouse.y);
@@ -230,5 +285,4 @@ export default class Player {
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.06, 0, 2*Math.PI );
       game.context.fill();
-    }
-}
+*/
