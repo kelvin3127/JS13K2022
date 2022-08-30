@@ -1,15 +1,15 @@
 export default class Mouse {
 
-    constructor() {
+    constructor(canvas) {
 
         this.x = 0;
         this.y = 0;
         this.pressed = false;
 
 
-        document.addEventListener("mousemove", this.mousemove.bind(this));
-        document.addEventListener('mousedown', this.mousedown.bind(this));
-        document.addEventListener('mouseup', this.mouseup.bind(this));
+        canvas.addEventListener("mousemove", this.mousemove.bind(this));
+        canvas.addEventListener('mousedown', this.mousedown.bind(this));
+        canvas.addEventListener('mouseup', this.mouseup.bind(this));
     }
 
     mousemove(e) {

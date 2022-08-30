@@ -39,8 +39,8 @@ export default class Game {
 		this.canvas.height = this.height;
 		this.mouse = new Mouse(this.canvas);
 
-		console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
-		console.log(this.canvas.height, this.canvas.width);
+		//console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
+		//console.log(this.canvas.height, this.canvas.width);
 		//Canvas Context
         this.context = this.canvas.getContext('2d');
 
@@ -100,7 +100,7 @@ export default class Game {
 		this.world = null;
 
         //Player
-        this.player = new Player(0, 0);
+        this.player = new Player(this.canvas.width/2, this.canvas.height/2);
 
         this.world = new World({
             game: this,

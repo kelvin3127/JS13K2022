@@ -2,14 +2,12 @@ import {rotatePoint} from './util.js';
 
 export default class Player {
 
-    constructor( x = 0, y = 0) {
+    constructor( x, y ) {
 
-    this.x = 0;
-    this.y = 0;
+    this.x = x;
+    this.y = y;
     this.vx = 0;
     this.vy = 0;
-    this.dx = 0;
-    this.dy = 0;
     this.radius = 12;
 
     this.radian = 0
@@ -70,16 +68,13 @@ export default class Player {
       }
 
       // calculate radian
-      const radian = Math.atan2(this.vy, this.vx);
-      const radianTest = Math.atan2(mouse.y - this.y, mouse.x - this.x);
-      
-      //console.log(radian * 180/Math.PI, radianTest * 180/Math.PI);
+      const radian = Math.atan2(mouse.y - (height/2), mouse.x - (width/2));
+
       //console.log(this.x,this.y);
-      console.log(mouse.x,mouse.y);
+      //console.log(mouse.x,mouse.y);
+
       // get change
       let diff = radian - this.radian;
-      let diffTest = radianTest - this.radianTest;
-
 
       if(diff < -Math.PI){
         diff += Math.PI*2;
@@ -87,20 +82,14 @@ export default class Player {
         diff -= Math.PI*2;
       }
 
-      if(diffTest < -Math.PI){
-        diffTest += Math.PI*2;
-      } else if (diffTest > Math.PI) {
-        diffTest -= Math.PI*2;
-      }
-
       // apply rotation with lerp
       this.radian += diff * 1;
-      this.radianTest += diffTest *1;
-
 
       // update position
       this.x += this.vx;
       this.y += this.vy;
+
+      console.log(this.radian * 180/Math.PI, this.radianTest * 180/Math.PI);
 
 /*       if(Math.abs(Math.sqrt(this.vx*this.vx + this.vy*this.vy)) > 1){
         this.history.unshift([this.x, this.y]);
@@ -156,16 +145,6 @@ export default class Player {
         game.context.fill();
         return;
       }
-
-
-      game.context.beginPath();
-      const p = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
-      game.context.moveTo( p.x, p.y );
-      game.context.lineTo( game.mouse.x, game.mouse.y);
-      game.context.strokeStyle = "#000000";
-      game.context.stroke();
-      
-
 
       game.context.fillStyle = '#000000';
       game.context.beginPath();
