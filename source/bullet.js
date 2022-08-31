@@ -7,6 +7,9 @@ export default class Bullet {
       this.speed = 16;
     }
     
+    shoot() {
+      
+    }
     
     draw() {
         //Actual bullet picture

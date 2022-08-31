@@ -1,3 +1,4 @@
+import Bullet from './bullet.js';
 import {rotatePoint} from './util.js';
 
 export default class Player {
@@ -63,7 +64,7 @@ export default class Player {
       }
 
       // check for down keys
-      if(keyboard.isPressed('s')) {
+      if (keyboard.isPressed('s')) {
         this.vy += this.speed;
       }
 
@@ -88,7 +89,11 @@ export default class Player {
       this.x += this.vx;
       this.y += this.vy;
 
-      console.log(this.radian * 180/Math.PI);
+      if (mouse.pressed) {
+        const bullet = new Bullet(this.x, this.y, this.radian)
+      }
+
+      //console.log(this.radian * 180/Math.PI);
 
 /*       if(Math.abs(Math.sqrt(this.vx*this.vx + this.vy*this.vy)) > 1){
         this.history.unshift([this.x, this.y]);
