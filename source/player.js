@@ -149,9 +149,7 @@ export default class Player {
         game.context.fill();
         return;
       }
-
       //This is the line pointing to mouse/player
-
 
  /*      //Left hand
       game.context.fillStyle = '#C02942';
@@ -165,102 +163,71 @@ export default class Player {
       game.context.beginPath()
       game.context.rect(p3.x + 13, p3.y - 40, 8, 40);
       game.context.fill();
+      */
+
+      // draw hood
+      // game.context.beginPath();
+      // const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
+      // game.context.moveTo( p1.x, p1.y );
+      // const p2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius*2.5, this.y + Math.sin(game.frame/15)*5);
+      // const b1 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius);
+      // const b2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius*0.5 + Math.cos(game.frame/15)*5);
+      // game.context.bezierCurveTo(b1.x, b1.y, b2.x, b2.y, p2.x, p2.y);
+      // const p3 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + this.radius);
+      // const b3 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius*0.5 + Math.cos(game.frame/15)*5);
+      // const b4 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius);
+      // game.context.bezierCurveTo(b3.x, b3.y, b4.x, b4.y, p3.x, p3.y);
+      // game.context.fill();
 
       //Gun
       game.context.fillStyle = '#929292';
       game.context.beginPath()
-      const p4 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
-      game.context.rect(p4.x - 5, p4.y - 55, 10, 30);
+      const p3 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.7, this.y + this.radius * 0.3);
+      game.context.rect(p3.x, p3.y, 10, 30);
       game.context.fill();
     
-      game.context.fillStyle = '#929292';
-      game.context.beginPath()
-      game.context.rect(p4.x - 2.75, p4.y - 65, 5, 10);
-      game.context.fill(); */
+      // game.context.fillStyle = '#929292';
+      // game.context.beginPath()
+      // game.context.rect(p4.x - 2.75, p4.y - 65, 5, 10);
+      // game.context.fill(); 
 
-/*       //Torso
+
+
+      //Draw Torso
       game.context.fillStyle = '#7F9EA1';
-      game.context.beginPath()
-      const p2 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
-      console.log(p2.x - 25, p2.y - 10);
-      game.context.rect(p2.x - 25, p2.y- 10, 50, 20);
-      game.context.fill();
-
-      //Head
-      game.context.fillStyle = '#F1D4AF';
-      game.context.beginPath();
-      const p0 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
-      game.context.arc( p0.x, p0.y + 5, 20, this.radian - 1.5, this.radian + 1.5);
-      game.context.fill();
-
-      //Hair
-      game.context.fillStyle = '#4d2600';
-      game.context.beginPath();
-      const p1 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
-      game.context.arc( p1.x, p1.y + 5, 15, this.radian - 1.5, this.radian + 1.5);
-      game.context.fill();
-
-    }
-} */
-
-      // draw shadow
-      game.context.fillStyle = 'rgba(0,0,0,0.2)';
-      game.context.beginPath();
-      game.context.arc( this.x, this.y, this.radius*1.2, 0, 2*Math.PI );
-      game.context.fill();
-  
-      // draw basket
-      game.context.fillStyle = '#CC8D56';
       game.context.beginPath();
       const p0 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + this.radius);
-      game.context.arc( p0.x, p0.y, this.radius*0.5, 0, 2*Math.PI );
+      game.context.arc( p0.x, p0.y, this.radius*0.7, 0, 2*Math.PI );
+      game.context.fill();
+      game.context.fillStyle = '#7F9EA1';
+      game.context.beginPath();
+      const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
+      game.context.arc( p1.x, p1.y, this.radius*0.7, 0, 2*Math.PI );
       game.context.fill();
   
-      // draw circle
-      game.context.fillStyle = this.hoodcolor;
+      //Draw Head
+      game.context.fillStyle = '#4d2600';
       game.context.beginPath();
       game.context.arc( this.x, this.y, this.radius, 0, 2*Math.PI );
       game.context.fill();
-  
-      // draw hood
-      game.context.beginPath();
-      const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
-      game.context.moveTo( p1.x, p1.y );
-      const p2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius*2.5, this.y + Math.sin(game.frame/15)*5);
-      const b1 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius);
-      const b2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius*0.5 + Math.cos(game.frame/15)*5);
-      game.context.bezierCurveTo(b1.x, b1.y, b2.x, b2.y, p2.x, p2.y);
-      const p3 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + this.radius);
-      const b3 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius*0.5 + Math.cos(game.frame/15)*5);
-      const b4 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius);
-      game.context.bezierCurveTo(b3.x, b3.y, b4.x, b4.y, p3.x, p3.y);
-      game.context.fill();
-  
-      // draw face
-      game.context.fillStyle = this.facecolor;
+
+      //Draw Face
+      game.context.fillStyle = '#F1D4AF';
       game.context.beginPath();
       const p4 = rotatePoint(this.x, this.y, this.radian, this.x + this.radius*0.2, this.y);
-      game.context.arc( p4.x, p4.y, this.radius*0.8, this.radian - 1.5, this.radian + 1.5 );
+      game.context.arc( p4.x, p4.y, this.radius, this.radian - 1.5, this.radian + 1.5 );
       game.context.fill();
-  
-      // draw nose
-      const nose = rotatePoint(this.x, this.y, this.radian, this.x + this.radius, this.y);
-      game.context.beginPath();
-      game.context.arc( nose.x, nose.y, this.radius * 0.15, 0, 2*Math.PI );
-      game.context.fill();
-  
-      // draw left eye
+
+      //Draw Eyes
       game.context.fillStyle = '#000';
-      const left = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.7, this.y - this.radius * 0.3);
+      const left = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.8, this.y - this.radius * 0.3);
       game.context.beginPath();
-      game.context.arc( left.x, left.y, this.radius * 0.06, 0, 2*Math.PI );
+      game.context.arc( left.x, left.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
-  
-      // draw right eye
-      const right = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.7, this.y + this.radius * 0.3);
+      const right = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.8, this.y + this.radius * 0.3);
       game.context.beginPath();
-      game.context.arc(right.x, right.y, this.radius * 0.06, 0, 2*Math.PI );
-      game.context.fill(); 
+      game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
+      game.context.fill();
 
     }
   }
