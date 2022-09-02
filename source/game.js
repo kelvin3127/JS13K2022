@@ -6,6 +6,7 @@ import Keyboard from './keyboard.js';
 import Gamestate from './gamestate.js';
 import Timer from './timer.js';
 import World from './world.js';
+
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
 export default class Game {
@@ -17,7 +18,7 @@ export default class Game {
         this.start = new Start();
         this.end = new End();
         this.timer = null;
-
+		this.fps = 0;
         //The Game States
         this.gameState = new Gamestate([
 			'PLAYING',
@@ -38,6 +39,7 @@ export default class Game {
         this.canvas.width = this.width;
 		this.canvas.height = this.height;
 		this.mouse = new Mouse(this.canvas);
+
 
 		//console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
 		//console.log(this.canvas.height, this.canvas.width);
@@ -68,17 +70,22 @@ export default class Game {
 		//Update Frame
 		this.frame++;
 
+/* 		if (this.frame%60 == 0){
+			this.fps++
+			console.log(this.fps);
+		} */
+
 		//Current Time
 		const now = new Date();
 
 		//Find DeltaTime
   	    this.deltaTime = now - this.lastTimestamp;
 
-		//Draw State
-		this.draw();
-
 		//Update State
 		this.update(this.deltaTime);
+
+		//Draw State
+		this.draw();
 
 		//Save Timestamp
   		this.lastTimestamp = now;
@@ -132,6 +139,8 @@ export default class Game {
 				//Update Player
 				this.player.update(this);
 
+				//this.bulletmanager.update(this);
+
 				//Clear Keyboard
 				this.keyboard.clearKeys();
 
@@ -178,11 +187,15 @@ export default class Game {
 
 				//this.player.drawBefore(this);
 
-				//Draw Player
-				this.player.draw(this);
 
 				//Draw World
 				this.world.draw(this);
+
+				//Draw Player
+
+				this.player.draw(this);
+
+				//this.bulletmanager.draw(this);
 
 				//Translate Context Back
 				this.context.translate(-x, -y);

@@ -12,16 +12,17 @@ export default class Mouse {
         canvas.addEventListener('mouseup', this.mouseup.bind(this));
     }
 
-    mousemove(e) {
-        this.x = e.clientX;
-        this.y = e.clientY;
+    mousemove(event) {
+        this.x = event.clientX;
+        this.y = event.clientY;
     }
 
-    mousedown(e) {
+    mousedown(event) {
         this.pressed = true;
+        
     }
 
-    mouseup(e) {
+    mouseup(event) {
         this.pressed = false;
     }
 

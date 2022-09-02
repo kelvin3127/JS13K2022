@@ -1,26 +1,29 @@
-export default class Bullet {
+export default class Projectile {
     //x, y, angle of the player
-    constructor(x, y, angle) {
+    constructor(x, y, radian, game, color) {
       this.x = x;
       this.y = y;
-      this.angle = angle;
-      this.speed = 16;
-    }
-    
-    shoot() {
-      
+      //this.velocity = velocity;
+      this.radius = 10;
+      this.maxFrames = 15;
+      this.color = '#4d2600';
+      this.isDestroyed = false;
+      this.radian = radian;
+      this.game = game;
     }
     
     draw() {
-        //Actual bullet picture
-      push();
-      fill(0);
-      circle(this.x, this.y, 5);
-      pop();
+      //Actual bullet picture
+      if (!this.isDestroyed) {
+        this.game.context.fillStyle = this.color;
+        this.game.context.beginPath();
+        this.game.context.arc( this.x, this.y, this.radius, 0, 2*Math.PI );
+        this.game.context.fill();
+      }
     }
     
-    update() {
+/*     update() {
       this.x += this.speed * cos(this.angle);
       this.y += this.speed * sin(this.angle);
-    }
+    } */
   }

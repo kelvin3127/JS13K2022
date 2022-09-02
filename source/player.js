@@ -1,4 +1,4 @@
-import Bullet from './bullet.js';
+import Projectile from './bullet.js';
 import {rotatePoint} from './util.js';
 
 export default class Player {
@@ -20,6 +20,15 @@ export default class Player {
     this.health = 100;
     this.ammo = 0;
     this.friction = 0.9;
+
+    this.bulletClip = [];
+
+    this.shooting = false;
+
+    this.reload = false;
+    
+    this.bulletX = x;
+    this.bulletY = y;
 
     }
 
@@ -70,9 +79,7 @@ export default class Player {
 
       // calculate radian
       const radian = Math.atan2(mouse.y - (height/2), mouse.x - (width/2));
-      //const radian = Math.atan2(this.vy, this.vx);
 
-      //console.log("keyborad:" + radian * 180/Math.PI, "mouse:" +radianTest * 180/Math.PI);
       // get change
       let diff = radian - this.radian;
 
@@ -89,26 +96,16 @@ export default class Player {
       this.x += this.vx;
       this.y += this.vy;
 
-      if (mouse.pressed) {
-        const bullet = new Bullet(this.x, this.y, this.radian)
-      }
+      // update bullet position
+      this.bulletX += 1;
+      this.bulletY += 1;
 
-      //console.log(this.radian * 180/Math.PI);
-
-/*       if(Math.abs(Math.sqrt(this.vx*this.vx + this.vy*this.vy)) > 1){
-        this.history.unshift([this.x, this.y]);
-        if(this.history.length > 1000){
-          this.history.pop();
+      // shooting & bullet generation
+      if (!this.reload) {
+        if (mouse.pressed) {
+          this.bulletClip.push(new Projectile(this.x, this.y, this.radian));
         }
-      } */
-/* 
-      if(game.frame % 10 === 0 && (Math.round(this.vx) !== 0 || Math.round(this.vy) !== 0)){
-
-        // add footstep
-        const step = new Step(this.x,this.y);
-        game.steps.unshift(step);
-
-      } */
+      }
 
       // apply friction
       this.vx *= this.friction;
@@ -117,28 +114,11 @@ export default class Player {
       // reset colliding
       this.colliding = false;
 
-      // test collision with sisters
-/*       game.sisters.forEach((sister, i) => {
-        if(distanceBetween(this, sister) < 0){
-          sister.found = true;
-          this.sisters.unshift(sister);
-          game.sisters.splice(i, 1);
-
-        }
-      }); */
-
-/*       this.sisters.forEach((sister, i)=> {
-        if (sister.dead){
-          return;
-        }
-
-        const dx = (this.history[i*15 + 15][0] - sister.x) * 0.1;
-        const dy = (this.history[i*15 + 15][1] - sister.y) * 0.1;
-        sister.radian = Math.atan2(dy, dx);
-        sister.x += dx;
-        sister.y += dy;
-      }); */
+      if (game.mouse.pressed) {
+        this.shooting = true;
+        this.bulletClip.push(new Projectile(this.bulletX, this.bulletY, this.radian, game));
     }
+  }
 
     draw(game) {
       
@@ -149,7 +129,6 @@ export default class Player {
         game.context.fill();
         return;
       }
-      //This is the line pointing to mouse/player
 
       //Right hand
       game.context.fillStyle = '#C02942';
@@ -238,7 +217,13 @@ export default class Player {
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
-        
+
+      //Draw Bullet
+      if (this.shooting) {
+        this.bulletClip[this.bulletClip.length - 1].draw();
+
+      }
+
       // draw hood
       // game.context.beginPath();
       // const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
