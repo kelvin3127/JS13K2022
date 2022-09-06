@@ -221,22 +221,6 @@ export default class Player {
       //Draw Bullet
       if (this.shooting) {
         this.bulletClip[this.bulletClip.length - 1].draw();
-
       }
-
-      // draw hood
-      // game.context.beginPath();
-      // const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
-      // game.context.moveTo( p1.x, p1.y );
-      // const p2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius*2.5, this.y + Math.sin(game.frame/15)*5);
-      // const b1 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius);
-      // const b2 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y - this.radius*0.5 + Math.cos(game.frame/15)*5);
-      // game.context.bezierCurveTo(b1.x, b1.y, b2.x, b2.y, p2.x, p2.y);
-      // const p3 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + this.radius);
-      // const b3 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius*0.5 + Math.cos(game.frame/15)*5);
-      // const b4 = rotatePoint(this.x, this.y, this.radian, this.x - this.radius, this.y + this.radius);
-      // game.context.bezierCurveTo(b3.x, b3.y, b4.x, b4.y, p3.x, p3.y);
-      // game.context.fill();
-
     }
   }

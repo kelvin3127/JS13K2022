@@ -40,9 +40,6 @@ export default class Game {
 		this.canvas.height = this.height;
 		this.mouse = new Mouse(this.canvas);
 
-
-		//console.log(this.canvas.offsetTop,this.canvas.offsetLeft);
-		//console.log(this.canvas.height, this.canvas.width);
 		//Canvas Context
         this.context = this.canvas.getContext('2d');
 
