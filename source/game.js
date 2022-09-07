@@ -5,7 +5,8 @@ import Mouse from './mouse.js';
 import Keyboard from './keyboard.js';
 import Gamestate from './gamestate.js';
 import Timer from './timer.js';
-import World from './world.js';
+import World from './world2.js';
+import BulletManager from './bulletmanager.js';
 
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
@@ -26,6 +27,8 @@ export default class Game {
 			'MENU',
 			'END',
 		]);
+
+		this.bulletManager = new BulletManager();
 
         //Default State Start
         this.gameState.set('MENU');
@@ -106,11 +109,13 @@ export default class Game {
         //Player
         this.player = new Player(this.canvas.width/2, this.canvas.height/2);
 
-        this.world = new World({
+/*         this.world = new World({
             game: this,
             r: 10,
             size: 140,
-        });
+        }); */
+
+		this.world = new World(this);
 
         this.timer = new Timer();
 
@@ -133,10 +138,12 @@ export default class Game {
 
 				this.wind = Math.sin(this.frame / 40);
 
+				this.bulletManager.update(this);
+
 				//Update Player
+				
 				this.player.update(this);
 
-				//this.bulletmanager.update(this);
 
 				//Clear Keyboard
 				this.keyboard.clearKeys();
@@ -188,11 +195,11 @@ export default class Game {
 				//Draw World
 				this.world.draw(this);
 
+				//Draw Projectiles
+				this.bulletManager.draw(this);
+
 				//Draw Player
-
 				this.player.draw(this);
-
-				//this.bulletmanager.draw(this);
 
 				//Translate Context Back
 				this.context.translate(-x, -y);

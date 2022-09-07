@@ -3,13 +3,12 @@ import { randomBetween, arcTan } from './util.js';
 export default class Tree {
 
   constructor({x = 0, y = 0, trunkRadius = 20, leafRadius = 100}) {
-
     this.x = x;
     this.y = y;
     this.radius = trunkRadius;
     this.leafRadius = leafRadius;
     this.amplitude = 0;
-    this.detail = 10;
+    this.detail = 3;
     this.points = Array(this.detail).fill().map((i) => {
       return randomBetween(1-this.amplitude, 1);
     });
@@ -56,7 +55,7 @@ export default class Tree {
     game.context.fill();
 
     // draw top
-    game.context.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    game.context.fillStyle = 'rgba(225, 87, 51, 0.1)';
     game.context.beginPath();
     this.points.forEach((p, i) => {
       game.context.lineTo(

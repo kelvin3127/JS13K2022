@@ -1,4 +1,4 @@
-import Projectile from './bullet.js';
+import Projectile from './projectile.js';
 import {rotatePoint} from './util.js';
 
 export default class Player {
@@ -14,12 +14,15 @@ export default class Player {
     this.radian = 0
     this.radianTest = 0;
     
-    this.speed = 0.5;
+    this.speed = 0.2;
     this.colliding = false;
     this.death = false;
     this.health = 100;
     this.ammo = 0;
     this.friction = 0.9;
+
+    this.recoil = 0;
+
 
     this.bulletClip = [];
 
@@ -53,6 +56,8 @@ export default class Player {
     }
 
     update(game){
+      this.recoil -= 1;
+
       // get relevant variables
       const {keyboard, mouse} = game;
       const {width, height} = game;
@@ -101,11 +106,6 @@ export default class Player {
       this.bulletY += 1;
 
       // shooting & bullet generation
-      if (!this.reload) {
-        if (mouse.pressed) {
-          this.bulletClip.push(new Projectile(this.x, this.y, this.radian));
-        }
-      }
 
       // apply friction
       this.vx *= this.friction;
@@ -114,10 +114,12 @@ export default class Player {
       // reset colliding
       this.colliding = false;
 
-      if (game.mouse.pressed) {
-        this.shooting = true;
-        this.bulletClip.push(new Projectile(this.bulletX, this.bulletY, this.radian, game));
-    }
+      // if not reloading
+      if (game.mouse.pressed && this.recoil <= 0) {
+        game.bulletManager.addProjectile(new Projectile(this.x,this.y,this.radian));
+        this.recoil = 15;
+        let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
+      }
   }
 
     draw(game) {
@@ -157,6 +159,7 @@ export default class Player {
       game.context.stroke();
       game.context.fill();
 
+      game.context.fillStyle = '#929292';
       game.context.beginPath()
       const g5 = rotatePoint(this.x, this.y, this.radian, this.x+17.5, this.y -4);
       game.context.moveTo(g5.x, g5.y);
@@ -188,6 +191,7 @@ export default class Player {
       const p0 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + this.radius);
       game.context.arc( p0.x, p0.y, this.radius*0.7, 0, 2*Math.PI );
       game.context.fill();
+
       game.context.fillStyle = '#7F9EA1';
       game.context.beginPath();
       const p1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y - this.radius);
@@ -213,14 +217,13 @@ export default class Player {
       game.context.beginPath();
       game.context.arc( left.x, left.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
+
+      game.context.fillStyle = '#000';
       const right = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.8, this.y + this.radius * 0.3);
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
 
-      //Draw Bullet
-      if (this.shooting) {
-        this.bulletClip[this.bulletClip.length - 1].draw();
-      }
+      
     }
   }

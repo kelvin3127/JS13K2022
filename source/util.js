@@ -2,6 +2,14 @@ export const randomBetween = (min, max) => Math.random() * (max + min - 1) + min
 
 export const magnitude = (x, y) => Math.sqrt(x*x + y*y);
 
+export const isBetween = (x, low, high) => {
+  if (x >= low && x <= high) 
+  {return true}
+
+  return false;
+  ; 
+}
+
 export const seededRandomBetween = (string = '', seed = '', min = 0, max = 1) => {
 
   let hash = 0;
