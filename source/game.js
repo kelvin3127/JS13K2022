@@ -33,9 +33,9 @@ export default class Game {
         //Default State Start
         this.gameState.set('MENU');
 
-        //Map Size
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+        //Map Size - should be multiples of 100
+        this.width = 1600;
+        this.height = 1000;
 
         //Canvas
         this.canvas = document.getElementById('mainCanvas');

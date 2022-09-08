@@ -7,12 +7,11 @@ export default class Obstacle {
         this.x = x;
         this.y = y;
         this.type = type;
-        this.width = 0;
-        this.height = randomBetween(50, 300);
-        this.radius = randomBetween(50, 300);
+        this.width = randomBetween(5, 20);
+        this.height = randomBetween(5, 20);
+        this.radius = randomBetween(5, 20);
         this.centerX = 0;
         this.centerY = 0;
-        this.radius = randomBetween(10, 40);
         this.objState = false;
         this.dmg = 0;
     }    

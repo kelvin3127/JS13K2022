@@ -1,5 +1,11 @@
 export const randomBetween = (min, max) => Math.random() * (max + min - 1) + min;
 
+export const randomBetweenInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 export const magnitude = (x, y) => Math.sqrt(x*x + y*y);
 
 export const isBetween = (x, low, high) => {
