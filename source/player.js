@@ -11,6 +11,16 @@ export default class Player {
     this.vy = 0;
     this.radius = 12;
 
+    //Hitbox data
+    this.nwX = x;
+    this.nwY = y;
+    this.swX = x;
+    this.swY = y;
+    this.neX = x;
+    this.neY = y;
+    this.seX = x;
+    this.seY = y; 
+
     this.radian = 0
     this.radianTest = 0;
     
@@ -120,6 +130,18 @@ export default class Player {
         this.recoil = 15;
         let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
       }
+
+      // update hitbox data
+          //Hitbox data
+      this.nwX = this.x-15;
+      this.nwY = this.y-15;
+      this.swX = this.x-15;
+      this.swY = this.y-15+25;
+      this.neX = this.x-15+25;
+      this.neY = this.y-15;
+      this.seX = this.x-15+25;
+      this.seY = this.y-15+25; 
+
   }
 
     draw(game) {
@@ -131,6 +153,11 @@ export default class Player {
         game.context.fill();
         return;
       }
+
+      //Hit Box
+      game.context.beginPath()
+      game.context.rect(this.x-15,this.y-15,25,25);
+      game.context.stroke();
 
       //Right hand
       game.context.fillStyle = '#C02942';
@@ -161,13 +188,13 @@ export default class Player {
 
       game.context.fillStyle = '#929292';
       game.context.beginPath()
-      const g5 = rotatePoint(this.x, this.y, this.radian, this.x+17.5, this.y -4);
+      const g5 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y -4);
       game.context.moveTo(g5.x, g5.y);
-      const g6 = rotatePoint(this.x, this.y, this.radian, this.x+30, this.y - 4);
+      const g6 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y - 4);
       game.context.lineTo(g6.x, g6.y);
-      const g7 = rotatePoint(this.x, this.y, this.radian, this.x+30, this.y + 4);
+      const g7 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y + 4);
       game.context.lineTo(g7.x, g7.y);
-      const g8 = rotatePoint(this.x, this.y, this.radian, this.x+17.5, this.y + 4);
+      const g8 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y + 4);
       game.context.lineTo(g8.x, g8.y)
       game.context.stroke();
       game.context.fill(); 

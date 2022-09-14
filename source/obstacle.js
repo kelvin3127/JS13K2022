@@ -7,13 +7,23 @@ export default class Obstacle {
         this.x = x;
         this.y = y;
         this.type = type;
-        this.width = randomBetween(5, 20);
-        this.height = randomBetween(5, 20);
-        this.radius = randomBetween(5, 20);
-        this.centerX = 0;
-        this.centerY = 0;
+        this.width = randomBetween(15, 20);
+        this.height = randomBetween(15, 20);
+        this.radius = randomBetween(15, 20);
+        this.centerX = this.x;
+        this.centerY = this.y;
         this.objState = false;
         this.dmg = 0;
+
+        //Hitbox data
+        this.nwX = this.x
+        this.nwY = this.y
+        this.swX = this.x
+        this.swY = this.y+this.height
+        this.neX = this.x+this.width
+        this.neY = y;
+        this.seX = x;
+        this.seY = y; 
     }    
 
     setCenter() {

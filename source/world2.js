@@ -9,16 +9,10 @@ export default class World {
         this.obsCount = 25;
         this.dist = 300;
         this.drawable = true;
-        this.obstacles = [];
         this.cells = [];
         this.id = 1;
-
-        this.proto = new Obstacle(0,0,0);
-
-        this.obstacles.push(this.proto);
-
-        this.mapWidth = game.canvas.width;
-        this.mapHeight = game.canvas.height;
+        this.mapWidth = 2*game.canvas.width;
+        this.mapHeight = 2*game.canvas.height;
         
         for (let i = -game.canvas.width; i < game.canvas.width; i+= this.dist) {
             for (let j = -game.canvas.height; j < game.canvas.height; j+= this.dist) {
