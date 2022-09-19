@@ -8,8 +8,6 @@ export default class CollideManager {
     isCollide(objA, objB) {
         // horizontal gap
         //console.log('called');
-        console.log(objA.nwX);
-
         if (objA.nwX > objB.seX || objB.nwX > objA.seX) return false;
 
         // has vertical gap
@@ -30,20 +28,9 @@ export default class CollideManager {
         for (let i = 0;i < cells.length; i++) {
             if (bullets.length > 0) {
                 for (let j = 0; j < bullets.length; j++) {
-
                     if (this.isCollide(bullets[j], cells[i].obstacle)) {
-                        bullets[j].isDestroyed = true;
-                        console.log('this happened');
-                        
+                        bullets[j].isDestroyed = true;                        
                     }
-/* 
-                    if (bullets[j].x >= cells[i].topleftX &&
-                        bullets[j].y >= cells[i].topleftY &&
-                        bullets[j].x <= cells[i].topleftX + cells[i].length &&
-                        bullets[j].y <= cells[i].topleftY + cells[i].length) {
-                            this.broadTest.push();
-                            //console.log("bullet in cell " + cells[i].id); 
-                    } */
                 }
             }
 

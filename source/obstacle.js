@@ -10,7 +10,6 @@ export default class Obstacle {
         this.width = randomBetween(15, 20);
         this.height = randomBetween(15, 20);
         this.radius = randomBetween(15, 20);
-        this.diameter = 2*this.radius
         this.centerX = this.x;
         this.centerY = this.y;
         this.objState = false;

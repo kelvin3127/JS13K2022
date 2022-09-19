@@ -4,7 +4,6 @@ export default class Projectile {
       this.x = x;
       this.y = y;
       this.radius = 2.5;
-      this.diameter = 2*this.radius
       this.maxFrames = 15;
       this.color = 'red';
       this.isDestroyed = false;
