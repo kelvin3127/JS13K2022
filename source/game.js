@@ -7,6 +7,7 @@ import Gamestate from './gamestate.js';
 import Timer from './timer.js';
 import World from './world2.js';
 import BulletManager from './bulletmanager.js';
+import CollideManager from './collisionmanager.js';
 
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
@@ -29,6 +30,7 @@ export default class Game {
 		]);
 
 		this.bulletManager = new BulletManager();
+		this.collideManager = new CollideManager();
 
         //Default State Start
         this.gameState.set('MENU');
@@ -61,10 +63,10 @@ export default class Game {
         this.lastTimestamp = new Date();
 		this.deltaTime = 0;
         
-	//FOV gradient
-	this.gradient = this.context.createRadialGradient(this.width/2, this.height/2, 0, this.width/2, this.height/2, 3000);
-	this.gradient.addColorStop(0,'rgba(0,0,0,0.3');
-	this.gradient.addColorStop(0.1, 'rgba(0,0,0,1)');
+		//FOV gradient
+		this.gradient = this.context.createRadialGradient(this.width/2, this.height/2, 0, this.width/2, this.height/2, 3000);
+		this.gradient.addColorStop(0,'rgba(0,0,0,0.3');
+		this.gradient.addColorStop(0.1, 'rgba(0,0,0,1)');
 
     }
 
@@ -109,14 +111,7 @@ export default class Game {
         this.player = null;
 		this.world = null;
 
-        //Player
         this.player = new Player(this.canvas.width/2, this.canvas.height/2);
-
-/*         this.world = new World({
-            game: this,
-            r: 10,
-            size: 140,
-        }); */
 
 		this.world = new World(this);
 
@@ -150,18 +145,14 @@ export default class Game {
 				this.wind = Math.sin(this.frame / 40);
 
 				this.bulletManager.update(this);
-
-				//Update Player
 				
 				this.player.update(this);
 
-
-				//Clear Keyboard
 				this.keyboard.clearKeys();
 
-				//Update Timer
 				this.timer.update();
 
+				this.collideManager.update(this);
 				//this.messages.update();
 
 				break;

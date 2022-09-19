@@ -7,7 +7,7 @@ export default class World {
         this.game = game;
         this.size = 150;
         this.obsCount = 25;
-        this.dist = 300;
+        this.dist = 1000;
         this.drawable = true;
         this.cells = [];
         this.id = 1;
@@ -16,7 +16,7 @@ export default class World {
         
         for (let i = -game.canvas.width; i < game.canvas.width; i+= this.dist) {
             for (let j = -game.canvas.height; j < game.canvas.height; j+= this.dist) {
-                this.cells.push(new Cell(i,j,this.id));
+                this.cells.push(new Cell(this.id,i,j,this.dist));
                 this.id += 1;
             }
         }        
@@ -87,6 +87,6 @@ export default class World {
 
             }
         } 
-
     }
+
 }

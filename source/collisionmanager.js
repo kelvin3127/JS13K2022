@@ -1,10 +1,21 @@
-export default class CollisionManager {
-    constructor() {       
+import {isBetween} from './util.js';
+
+export default class CollideManager {
+    constructor() {     
+        this.broadTest = [];  
     }
 
     isCollide(objA, objB) {
-        //make exception for Obstacle types
-        
+        // horizontal gap
+        //console.log('called');
+        console.log(objA.nwX);
+
+        if (objA.nwX > objB.seX || objB.nwX > objA.seX) return false;
+
+        // has vertical gap
+        if (objA.nwY > objB.seY || objB.nwY > objA.seY) return false;
+    
+        return true;
     }
 
     pushBack (objA) {
@@ -13,15 +24,31 @@ export default class CollisionManager {
 
 
     update(game) {
-        
-        for ( let i = 0; i < this.clip.length; i++) {
-            this.clip[i].projectFrames += 1;
-            this.clip[i].x += 5*Math.cos(this.clip[i].radian);
-            this.clip[i].y += 5*Math.sin(this.clip[i].radian);
-            if (this.clip[i].projectFrames >= 90) {
-                this.clip[i].isDestroyed = true;
+        let cells = game.world.cells;
+        let bullets = game.bulletManager.clip;
+
+        for (let i = 0;i < cells.length; i++) {
+            if (bullets.length > 0) {
+                for (let j = 0; j < bullets.length; j++) {
+
+                    if (this.isCollide(bullets[j], cells[i].obstacle)) {
+                        bullets[j].isDestroyed = true;
+                        console.log('this happened');
+                        
+                    }
+/* 
+                    if (bullets[j].x >= cells[i].topleftX &&
+                        bullets[j].y >= cells[i].topleftY &&
+                        bullets[j].x <= cells[i].topleftX + cells[i].length &&
+                        bullets[j].y <= cells[i].topleftY + cells[i].length) {
+                            this.broadTest.push();
+                            //console.log("bullet in cell " + cells[i].id); 
+                    } */
+                }
             }
+
         }
+
 
     }
 }
