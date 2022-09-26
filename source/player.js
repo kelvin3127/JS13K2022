@@ -33,7 +33,6 @@ export default class Player {
 
     this.recoil = 0;
 
-
     this.bulletClip = [];
 
     this.shooting = false;
@@ -133,14 +132,14 @@ export default class Player {
 
       // update hitbox data
           //Hitbox data
-      this.nwX = this.x-15;
-      this.nwY = this.y-15;
-      this.swX = this.x-15;
-      this.swY = this.y-15+25;
-      this.neX = this.x-15+25;
-      this.neY = this.y-15;
-      this.seX = this.x-15+25;
-      this.seY = this.y-15+25; 
+      this.nwX = this.x-25;
+      this.nwY = this.y-25;
+      this.swX = this.x-25;
+      this.swY = this.y+15;
+      this.neX = this.x+25;
+      this.neY = this.y-25;
+      this.seX = this.x-25;
+      this.seY = this.y-15; 
 
   }
 
@@ -154,14 +153,9 @@ export default class Player {
         return;
       }
 
-      //Hit Box
-      game.context.beginPath()
-      game.context.rect(this.x-15,this.y-15,25,25);
-      game.context.stroke();
-
       //Right hand
       game.context.fillStyle = '#C02942';
-      game.context.beginPath()
+      game.context.beginPath();
       const a1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + 22);
       game.context.moveTo(a1.x, a1.y);
       const a2 = rotatePoint(this.x, this.y, this.radian, this.x+25, this.y - 8);
@@ -250,6 +244,11 @@ export default class Player {
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
+
+      //Hit Box
+      game.context.beginPath()
+      game.context.rect(this.nwX,this.nwY,35,35);
+      game.context.stroke();
 
       
     }

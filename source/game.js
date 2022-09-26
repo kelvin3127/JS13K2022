@@ -8,6 +8,7 @@ import Timer from './timer.js';
 import World from './world2.js';
 import BulletManager from './bulletmanager.js';
 import CollideManager from './collisionmanager.js';
+import EnemyManager from './enemymanager.js';
 
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
@@ -28,10 +29,6 @@ export default class Game {
 			'MENU',
 			'END',
 		]);
-
-		this.bulletManager = new BulletManager();
-		this.collideManager = new CollideManager();
-
         //Default State Start
         this.gameState.set('MENU');
 
@@ -58,6 +55,10 @@ export default class Game {
 
         //Game Objects
         this.player = null;  
+		this.bulletManager = new BulletManager();
+		this.collideManager = new CollideManager();
+		this.enemyManager = new EnemyManager(this);
+
 
         // Timestamp
         this.lastTimestamp = new Date();
@@ -144,6 +145,8 @@ export default class Game {
 
 				this.wind = Math.sin(this.frame / 40);
 
+				this.enemyManager.update(this);
+
 				this.bulletManager.update(this);
 				
 				this.player.update(this);
@@ -153,6 +156,8 @@ export default class Game {
 				this.timer.update();
 
 				this.collideManager.update(this);
+
+				this.enemyManager.update(this);
 				//this.messages.update();
 
 				break;
@@ -197,11 +202,15 @@ export default class Game {
 				//Draw World
 				this.world.draw(this);
 
+
 				//Draw Projectiles
 				this.bulletManager.draw(this);
 
 				//Draw Player
 				this.player.draw(this);
+
+				//Draw Enemy
+				this.enemyManager.draw(this);
 
 				//Translate Context Back
 				this.context.translate(-x, -y);

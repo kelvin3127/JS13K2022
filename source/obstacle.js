@@ -14,6 +14,7 @@ export default class Obstacle {
         this.centerY = this.y;
         this.objState = false;
         this.dmg = 0;
+        this.speed = 0;
 
         //Hitbox data
         if (this.type == 1) {

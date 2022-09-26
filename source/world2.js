@@ -84,7 +84,7 @@ export default class World {
         for (let i = 0; i < this.cells.length; i++) {
             if (this.inView(game, this.cells[i].obstacle)) {
                 this.cells[i].obstacle.draw(game);
-
+                
             }
         } 
     }
