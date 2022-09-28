@@ -12,15 +12,26 @@ export default class Player {
     this.radius = 12;
 
     //Hitbox data
-    // this.nwX = x;
-    // this.nwY = y;
-    // this.swX = x;
-    // this.swY = y;
-    // this.neX = x;
-    // this.neY = y;
-    // this.seX = x;
-    // this.seY = y; 
+    this.nwX = x;
+    this.nwY = y;
+    this.swX = x;
+    this.swY = y;
+    this.neX = x;
+    this.neY = y;
+    this.seX = x;
+    this.seY = y; 
 
+    //hitbox gun data
+    this.gunnwX = x;
+    this.gunnwY = y;
+    this.gunswX = x;
+    this.gunswY = y;
+    this.gunneX = x;
+    this.gunneY = y;
+    this.gunseX = x;
+    this.gunseY = y;
+
+    
 
     this.radian = 0
     this.radianTest = 0;
@@ -124,23 +135,49 @@ export default class Player {
       // reset colliding
       this.colliding = false;
 
+            // update hitbox data
+          //Hitbox data
+          const h1 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y - 18);
+          const h2 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y - 18);
+          const h3 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y + 18);
+          const h4 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y + 18);
+    
+          this.nwX = h1.x;
+          this.nwY = h1.y;
+          this.swX = h2.x;
+          this.swY = h2.y;
+          this.neX = h3.x;
+          this.neY = h3.y;
+          this.seX = h4.x;
+          this.seY = h4.y; 
+    
+          //update hitbox gun data
+          const h5 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y - 3);
+          const h6 = rotatePoint(this.x, this.y, this.radian, this.x + 40, this.y - 3);
+          const h7 = rotatePoint(this.x, this.y, this.radian, this.x + 40, this.y + 3);
+          const h8 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y + 3);
+    
+          this.gunRadian = h6.r;
+          this.gunnwX = h5.x;
+          this.gunnwY = h5.y;
+          this.gunswX = h6.x;
+          this.gunswY = h6.y;
+          this.gunneX = h7.x;
+          this.gunneY = h7.y;
+          this.gunseX = h8.x;
+          this.gunseY = h8.y;
+
       // if not reloading
       if (game.mouse.pressed && this.recoil <= 0) {
-        game.bulletManager.addProjectile(new Projectile(this.x,this.y,this.radian));
+        game.bulletManager.addProjectile(new Projectile(this.gunswX,this.gunswY,this.gunRadian));
+        console.log(this.gunRadian ,this.gunnwY);
+        
         this.recoil = 15;
-        let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
+        //let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
       }
 
-      // update hitbox data
-          //Hitbox data
-      // this.nwX = this.x-25;
-      // this.nwY = this.y-25;
-      // this.swX = this.x-25;
-      // this.swY = this.y+15;
-      // this.neX = this.x+25;
-      // this.neY = this.y-25;
-      // this.seX = this.x-25;
-      // this.seY = this.y-15; 
+
+
       
 
   }
@@ -247,18 +284,15 @@ export default class Player {
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
 
+
       //Hit Box
       game.context.strokeStyle = 'black';
       game.context.beginPath()
-      const h1 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y - 18);
-      game.context.moveTo(h1.x, h1.y);
-      const h2 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y - 18);
-      game.context.lineTo(h2.x, h2.y);
-      const h3 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y + 18);
-      game.context.lineTo(h3.x, h3.y);
-      const h4 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y + 18);
-      game.context.lineTo(h4.x, h4.y);
-      game.context.lineTo(h1.x, h1.y);
+      game.context.moveTo(this.nwX, this.nwY);
+      game.context.lineTo(this.swX, this.swY);
+      game.context.lineTo(this.neX, this.neY);
+      game.context.lineTo(this.seX, this.seY);
+      game.context.lineTo(this.nwX, this.nwY);
       game.context.stroke();
 
       //Gun Hitbox

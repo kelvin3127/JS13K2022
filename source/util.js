@@ -77,7 +77,8 @@ export const rotatePoint = (cx, cy, angle, px, py) => {
   // return points
   return {
     x: px,
-    y: py
+    y: py,
+    r: angle
   };
 };
 
