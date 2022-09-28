@@ -12,14 +12,15 @@ export default class Player {
     this.radius = 12;
 
     //Hitbox data
-    this.nwX = x;
-    this.nwY = y;
-    this.swX = x;
-    this.swY = y;
-    this.neX = x;
-    this.neY = y;
-    this.seX = x;
-    this.seY = y; 
+    // this.nwX = x;
+    // this.nwY = y;
+    // this.swX = x;
+    // this.swY = y;
+    // this.neX = x;
+    // this.neY = y;
+    // this.seX = x;
+    // this.seY = y; 
+
 
     this.radian = 0
     this.radianTest = 0;
@@ -132,14 +133,15 @@ export default class Player {
 
       // update hitbox data
           //Hitbox data
-      this.nwX = this.x-25;
-      this.nwY = this.y-25;
-      this.swX = this.x-25;
-      this.swY = this.y+15;
-      this.neX = this.x+25;
-      this.neY = this.y-25;
-      this.seX = this.x-25;
-      this.seY = this.y-15; 
+      // this.nwX = this.x-25;
+      // this.nwY = this.y-25;
+      // this.swX = this.x-25;
+      // this.swY = this.y+15;
+      // this.neX = this.x+25;
+      // this.neY = this.y-25;
+      // this.seX = this.x-25;
+      // this.seY = this.y-15; 
+      
 
   }
 
@@ -246,8 +248,31 @@ export default class Player {
       game.context.fill();
 
       //Hit Box
+      game.context.strokeStyle = 'black';
       game.context.beginPath()
-      game.context.rect(this.nwX,this.nwY,35,35);
+      const h1 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y - 18);
+      game.context.moveTo(h1.x, h1.y);
+      const h2 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y - 18);
+      game.context.lineTo(h2.x, h2.y);
+      const h3 = rotatePoint(this.x, this.y, this.radian, this.x + 12, this.y + 18);
+      game.context.lineTo(h3.x, h3.y);
+      const h4 = rotatePoint(this.x, this.y, this.radian, this.x - 10, this.y + 18);
+      game.context.lineTo(h4.x, h4.y);
+      game.context.lineTo(h1.x, h1.y);
+      game.context.stroke();
+
+      //Gun Hitbox
+      game.context.strokeStyle = 'black';
+      game.context.beginPath()
+      const h5 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y - 3);
+      game.context.moveTo(h5.x, h5.y);
+      const h6 = rotatePoint(this.x, this.y, this.radian, this.x + 40, this.y - 3);
+      game.context.lineTo(h6.x, h6.y);
+      const h7 = rotatePoint(this.x, this.y, this.radian, this.x + 40, this.y + 3);
+      game.context.lineTo(h7.x, h7.y);
+      const h8 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y + 3);
+      game.context.lineTo(h8.x, h8.y);
+      game.context.lineTo(h5.x, h5.y);
       game.context.stroke();
 
       
