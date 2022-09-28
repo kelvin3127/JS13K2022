@@ -36,7 +36,7 @@ export default class Player {
     this.radian = 0
     this.radianTest = 0;
     
-    this.speed = 0.2;
+    this.speed = 0.3;
     this.colliding = false;
     this.death = false;
     this.health = 100;
@@ -44,6 +44,7 @@ export default class Player {
     this.friction = 0.9;
 
     this.recoil = 0;
+    this.fireRate = 25;
 
     this.bulletClip = [];
 
@@ -170,9 +171,8 @@ export default class Player {
       // if not reloading
       if (game.mouse.pressed && this.recoil <= 0) {
         game.bulletManager.addProjectile(new Projectile(this.gunswX,this.gunswY,this.gunRadian));
-        console.log(this.gunRadian ,this.gunnwY);
         
-        this.recoil = 15;
+        this.recoil = this.fireRate;
         //let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
       }
 

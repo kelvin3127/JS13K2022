@@ -9,7 +9,7 @@ export default class Projectile {
       this.isDestroyed = false;
       this.radian = radian;
       this.projectFrames = 0;
-      this.speed = 5;
+      this.speed = 9;
       
       //Calculate max bullet draw distance
       this.maxX = x + 500*Math.cos(this.radian);
