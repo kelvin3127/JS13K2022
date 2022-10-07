@@ -3,6 +3,13 @@ import {rotatePoint} from './util.js';
 
 export default class Gun {
     constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.radian = 0
+
+        this.recoil = 0;
+        this.fireRate = 25;
+
         this.nwX = x;
         this.nwY = y;
         this.swX = x;
@@ -21,47 +28,62 @@ export default class Gun {
         this.gunneY = y;
         this.gunseX = x;
         this.gunseY = y;
+
+        this.g1 = {x:0, y:0, r:0};
+        this.g2 = {};
+        this.g3 = {};
+        this.g4 = {};
+        this.g5 = {};
+        this.g6 = {};
+        this.g7 = {};
+        this.g8 = {};
+
+        
     }
-    update(){
+    update(game, radian, x,y){
+        this.recoil -= 1;
+        this.radian = radian;
+        this.x = x;
+        this.y = y;
+
+
+        this.g1 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y);
+        this.g2 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y - 2);
+        this.g3 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y + 2);
+        this.g4 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y + 2);
+
+        this.nwX = this.g1.x;
+        this.nwY = this.g1.y;
+        this.swX = this.g2.x;
+        this.swY = this.g2.y;
+        this.neX = this.g3.x;
+        this.neY = this.g3.y;
+        this.seX = this.g4.x;
+        this.seY = this.g4.y;
+
+        this.g5 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y -4);
+        this.g6 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y - 4);
+        this.g7 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y + 4);
+        this.g8 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y + 4);
+
+        this.gunRadian = this.g6.r; 
+        this.gunnwX = this.g5.x;
+        this.gunnwY = this.g5.y;
+        this.gunswX = this.g6.x;
+        this.gunswY = this.g6.y;
+        this.gunneX = this.g7.x;
+        this.gunneY = this.g7.y;
+        this.gunseX = this.g8.x;
+        this.gunseY = this.g8.y;
 
         // if not reloading
-        if (game.mouse.pressed && this.recoil <= 0) {
-        game.bulletManager.addProjectile(new Projectile(this.gunswX,this.gunswY,this.gunRadian));
-        
-        this.recoil = this.fireRate;
-        //let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
+                if (game.mouse.pressed && this.recoil <= 0) {
+                    
+                    this.recoil = this.fireRate;
+                    //let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
+                    }
     }
-
-        const g1 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y);
-        const g2 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y - 2);
-        const g3 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y + 2);
-        const g4 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y + 2);
-
-        this.nwX = g1.x;
-        this.nwY = g1.y;
-        this.swX = g2.x;
-        this.swY = g2.y;
-        this.neX = g3.x;
-        this.neY = g3.y;
-        this.seX = g4.x;
-        this.seY = g4.y;
-
-        const g5 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y -4);
-        const g6 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y - 4);
-        const g7 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y + 4);
-        const g8 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y + 4);
-        
-        this.gunnwX = g5.x;
-        this.gunnwY = g5.y;
-        this.gunswX = g6.x;
-        this.gunswY = g6.y;
-        this.gunneX = g7.x;
-        this.gunneY = g7.y;
-        this.gunseX = g8.x;
-        this.gunseY = g8.y;
-    }
-    draw() {
-
+    draw(game) {
       //Gun
       game.context.fillStyle = '#929292';
       game.context.beginPath()      

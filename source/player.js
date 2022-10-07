@@ -1,4 +1,3 @@
-import Projectile from './projectile.js';
 import Gun from './gun.js';
 import {rotatePoint} from './util.js';
 
@@ -6,7 +5,7 @@ export default class Player {
 
     constructor( x, y ) {
     
-    this.gun = new Gun();
+    
     this.x = x;
     this.y = y;
     this.vx = 0;
@@ -33,9 +32,6 @@ export default class Player {
     this.ammo = 0;
     this.friction = 0.9;
 
-    this.recoil = 0;
-    this.fireRate = 25;
-
     this.bulletClip = [];
 
     this.shooting = false;
@@ -44,6 +40,8 @@ export default class Player {
     
     this.bulletX = x;
     this.bulletY = y;
+
+    this.gun = new Gun(x, y);
 
     }
 
@@ -68,7 +66,6 @@ export default class Player {
     }
 
     update(game){
-      this.recoil -= 1;
 
       // get relevant variables
       const {keyboard, mouse} = game;
@@ -117,7 +114,8 @@ export default class Player {
       this.bulletX += 1;
       this.bulletY += 1;
 
-      // shooting & bullet generation
+      // update gun  
+      this.gun.update(game, this.radian, this.x, this.y);
 
       // apply friction
       this.vx *= this.friction;
@@ -125,23 +123,11 @@ export default class Player {
 
       // reset colliding
       this.colliding = false;
-
-
-      // if not reloading
-      if (game.mouse.pressed && this.recoil <= 0) {
-        game.bulletManager.addProjectile(new Projectile(this.gunswX,this.gunswY,this.gunRadian));
-        
-        this.recoil = this.fireRate;
-        //let lastBullet = game.bulletManager.clip[game.bulletManager.clip.length-1];
-    }
-
-
-
-      
-
   }
 
     draw(game) {
+
+      this.gun.draw(game);
       
       if(this.dead) {
         game.context.fillStyle = 'red';
