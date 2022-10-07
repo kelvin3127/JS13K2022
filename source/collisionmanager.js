@@ -53,6 +53,7 @@ export default class CollideManager {
                 player.y += 2.5 * Math.sin(-player.radian);
                 console.log(player.x,player.y);
             }
+            //gun to obst
             
         }
 
