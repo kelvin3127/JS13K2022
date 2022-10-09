@@ -157,7 +157,6 @@ export default class Game {
 
 				this.collideManager.update(this);
 
-				this.enemyManager.update(this);
 				//this.messages.update();
 
 				break;

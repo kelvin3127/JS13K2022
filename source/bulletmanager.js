@@ -7,7 +7,18 @@ export default class BulletManager {
 
     addProjectile(projectile) {
         this.clip.push(projectile);
+    }
 
+    refreshClip(clip) {
+        let newClip = [];
+        if (clip.length > 0) {
+            for (let i = 0; i < clip.length; i++) {
+                if (!clip[i].isDestroyed) {
+                    newClip.push(clip[i]);
+                }
+            }
+        }
+        return newClip;
     }
 
     draw(game) {
@@ -24,18 +35,6 @@ export default class BulletManager {
                 game.context.fill();
             }
         }
-    }
-
-    refreshClip(clip) {
-        let newClip = [];
-        if (clip.length > 0) {
-            for (let i = 0; i < clip.length; i++) {
-                if (!clip[i].isDestroyed) {
-                    newClip.push(clip[i]);
-                }
-            }
-        }
-        return newClip;
     }
 
     update(game) {

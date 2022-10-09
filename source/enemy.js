@@ -1,14 +1,14 @@
 export default class Enemy {
-
     constructor(x,y,type=0) {
         this.x = x;
         this.y = y;
         this.radius = 8;
         this.type = type;
-        this.speed = 0.2;
+        this.setSpeed = 0.6;
+        this.speed = this.setSpeed;
         this.damage = 5;
         this.health = 10;
-        this.dead = false;
+        this.isDead = false;
 
         //Hitbox data
         this.nwX = 0;
@@ -21,11 +21,15 @@ export default class Enemy {
         this.seY = 0;
     }
 
+    update() {   
+    }
+
     draw() {
+        if (!this.isDead) {
+            game.context.fillStyle = 'blue';
+            game.context.beginPath();
+            game.context.arc(this.enemies[i].x, this.enemies[i].y, this.enemies[i].radius, 0, 2*Math.PI)
+            game.context.fill();
+        }
     }
-
-    update() {
-        
-    }
-
 }

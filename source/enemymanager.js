@@ -31,7 +31,6 @@ export default class EnemyManager {
     }
 
     update(game) {
-
         //spawning
         if (this.enemies.length < this.maxEnemy) {
             if (this.spawnTimer >= this.spawnRate) {
@@ -47,28 +46,34 @@ export default class EnemyManager {
                 this.spawnTimer = 0;
             }
         }
-        //behavior
         if (this.enemies.length > 0) {
+            //behavior
             for (let i = 0; i < this.enemies.length; i++) {
                 let dir = Math.atan2(game.player.y - this.enemies[i].y, game.player.x - this.enemies[i].x);
-
                 this.enemies[i].x += this.enemies[i].speed * Math.cos(dir);
                 this.enemies[i].y += this.enemies[i].speed * Math.sin(dir);
-
             }
         }
+        this.enemies = this.refreshEnemies(this.enemies);
         this.spawnTimer+=1;
+    }
+
+    refreshEnemies(enemies) {
+        let newEnemies = [];
+        if (enemies > length) {
+            for (let i = 0; i < enemies.length; i++) {
+                if (!enemies[i].isDead) {
+                    newEnemies.push(enemies[i]);
+                }
+            }
+        }
+        return newEnemies;
     }
 
     draw(game) {
         if (this.enemies.length > 0) {
             for ( let i = 0; i < this.enemies.length; i++) {
-                if (!this.enemies[i].dead) {
-                    game.context.fillStyle = 'blue';
-                    game.context.beginPath();
-                    game.context.arc(this.enemies[i].x, this.enemies[i].y, this.enemies[i].radius, 0, 2*Math.PI)
-                    game.context.fill();
-                }
+                enemies[i].draw();
             }
         }
     }

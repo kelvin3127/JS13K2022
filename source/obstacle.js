@@ -1,4 +1,3 @@
-
 import { randomBetween } from "./util.js";
 
 export default class Obstacle {
@@ -37,6 +36,7 @@ export default class Obstacle {
             this.seX = this.x+this.radius;
             this.seY = this.y+this.radius; 
         }
+        this.setCenter();
     }    
 
     setCenter() {
@@ -49,7 +49,7 @@ export default class Obstacle {
         if (this.type == 1) {
             this.centerX = this.x + this.width/2;
             this.centerY = this.y + this.height/2;
-            }
+        }
     }
 
     onHit() {
@@ -74,5 +74,9 @@ export default class Obstacle {
             game.context.rect(this.x, this.y, this.width, this.height);
             game.context.fill();
         }
+        //hitbox
+        game.context.beginPath();
+        game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
+        game.context.stroke();
     } 
 }

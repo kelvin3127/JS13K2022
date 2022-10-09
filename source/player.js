@@ -4,44 +4,39 @@ import {rotatePoint} from './util.js';
 export default class Player {
 
     constructor( x, y ) {
-    
-    
-    this.x = x;
-    this.y = y;
-    this.vx = 0;
-    this.vy = 0;
-    this.radius = 12;
+      this.x = x;
+      this.y = y;
+      this.vx = 0;
+      this.vy = 0;
+      this.radius = 12;
 
-    //Hitbox data
-    this.nwX = x;
-    this.nwY = y;
-    this.swX = x;
-    this.swY = y;
-    this.neX = x;
-    this.neY = y;
-    this.seX = x;
-    this.seY = y; 
+      //Hitbox data
+      this.nwX = this.x - 20;
+      this.nwY = this.y + 12;
+      this.swX = this.x - 20;
+      this.swY = this.y - 12;
+      this.neX = this.x + 20;
+      this.neY = this.y + 12;
+      this.seX = this.x + 20;
+      this.seY = this.y - 12;
 
-    this.radian = 0
-    this.radianTest = 0;
-    
-    this.speed = 0.3;
-    this.colliding = false;
-    this.death = false;
-    this.health = 100;
-    this.ammo = 0;
-    this.friction = 0.9;
+      this.radian = 0
+      this.radianTest = 0;
+      
+      this.speed = 0.3;
+      this.colliding = false;
+      this.death = false;
+      this.health = 100;
+      this.ammo = 0;
+      this.friction = 0.9;
 
-    this.bulletClip = [];
+      this.bulletClip = [];
 
-    this.shooting = false;
+      this.shooting = false;
 
-    this.reload = false;
-    
-    this.bulletX = x;
-    this.bulletY = y;
+      this.reload = false;
 
-    this.gun = new Gun(x, y);
+      this.gun = new Gun(this.x, this.y);
 
     }
 
@@ -65,36 +60,27 @@ export default class Player {
       }
     }
 
-    update(game){
-
-      // get relevant variables
+    update(game) {
       const {keyboard, mouse} = game;
       const {width, height} = game;
 
-      // check for left keys
       if (keyboard.isPressed('a')) {
         this.vx -= this.speed;
       }
 
-      // check for right keys
       if (keyboard.isPressed('d')) {
         this.vx += this.speed;
       }
 
-      // check for up keys
       if (keyboard.isPressed('w')) {
         this.vy -= this.speed;
       }
 
-      // check for down keys
       if (keyboard.isPressed('s')) {
         this.vy += this.speed;
       }
 
-      // calculate radian
       const radian = Math.atan2(mouse.y - (height/2), mouse.x - (width/2));
-
-      // get change
       let diff = radian - this.radian;
 
       if(diff < -Math.PI){
@@ -110,10 +96,6 @@ export default class Player {
       this.x += this.vx;
       this.y += this.vy;
 
-      // update bullet position
-      this.bulletX += 1;
-      this.bulletY += 1;
-
       // update gun  
       this.gun.update(game, this.radian, this.x, this.y);
 
@@ -123,6 +105,17 @@ export default class Player {
 
       // reset colliding
       this.colliding = false;
+
+      // update hitbox
+      // NEED TO FIX THIS NOWWW
+      this.nwX = rotatePoint(this.x, this.y, this.radian, this.x - 20, this.y - 20).x;
+      this.nwY = rotatePoint(this.x, this.y, this.radian, this.x - 20, this.y - 20).y;
+      this.swX = rotatePoint(this.x, this.y, this.radian, this.x - 20, this.y + 20).x;
+      this.swY = rotatePoint(this.x, this.y, this.radian, this.x - 20, this.y + 20).y;
+      this.neX = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y - 20).x;
+      this.neY = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y - 20).y;
+      this.seX = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y + 20).x;
+      this.seY = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y + 20).y;
   }
 
     draw(game) {
@@ -132,7 +125,7 @@ export default class Player {
       if(this.dead) {
         game.context.fillStyle = 'red';
         game.context.beginPath();
-        game.context.arc( this.x, this.y, this.radius*1.2, 0, 2*Math.PI );
+        game.context.arc(this.x, this.y, this.radius*1.2, 0, 2*Math.PI);
         game.context.fill();
         return;
       }
@@ -149,33 +142,6 @@ export default class Player {
       const a4 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + 20);
       game.context.lineTo(a4.x, a4.y)
       game.context.fill(); 
-
-      // //Gun
-      // game.context.fillStyle = '#929292';
-      // game.context.beginPath()
-      // const g1 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y);
-      // game.context.moveTo(g1.x, g1.y);
-      // const g2 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y - 2);
-      // game.context.lineTo(g2.x, g2.y);
-      // const g3 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y + 2);
-      // game.context.lineTo(g3.x, g3.y);
-      // const g4 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y + 2);
-      // game.context.lineTo(g4.x, g4.y)
-      // game.context.stroke();
-      // game.context.fill();
-
-      // game.context.fillStyle = '#929292';
-      // game.context.beginPath()
-      // const g5 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y -4);
-      // game.context.moveTo(g5.x, g5.y);
-      // const g6 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y - 4);
-      // game.context.lineTo(g6.x, g6.y);
-      // const g7 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y + 4);
-      // game.context.lineTo(g7.x, g7.y);
-      // const g8 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y + 4);
-      // game.context.lineTo(g8.x, g8.y)
-      // game.context.stroke();
-      // game.context.fill(); 
 
       //Left hand
       game.context.fillStyle = '#C02942';
@@ -228,6 +194,19 @@ export default class Player {
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
       game.context.fill();
-      
+     
+      //DEBUG
+      //centerpoint
+      game.context.fillStyle = 'yellow';
+      game.context.beginPath();
+      game.context.arc(this.x,this.y,5,0,2*Math.PI);
+      game.context.fill();
+
+      //hitbox
+      game.context.strokeStyle = 'red';
+      game.context.beginPath();
+      game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
+      game.context.stroke();
+
     }
   }
