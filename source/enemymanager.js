@@ -2,7 +2,6 @@ import Enemy from "./enemy.js";
 import {arcTan} from "./util.js";
 
 export default class EnemyManager {
-
     constructor(game) {
         this.enemies = [];
         this.maxEnemy = 10;
@@ -12,21 +11,16 @@ export default class EnemyManager {
         this.spawnRate = 300;
     }
 
-    updateEnemies(enemies,game) {
+    refreshEnemies(enemies) {
         let newEnemies = [];
         if (enemies.length > 0) {
             for (let i = 0; i < enemies.length; i++) {
-                if (!enemies[i].dead) {
-                    let dir = Math.atan2(game.player.y, game.player.x);
-
-                    enemies[i].x += 5 * Math.cos(dir);
-                    enemies[i].y += 5 * Math.sin(dir);
-
-                    console.log(enemies[0].x);
+                if (!enemies[i].isDead) {
                     newEnemies.push(enemies[i]);
                 }
             }
         }
+        //console.log(newEnemies.length);
         return newEnemies;
     }
 
@@ -58,22 +52,10 @@ export default class EnemyManager {
         this.spawnTimer+=1;
     }
 
-    refreshEnemies(enemies) {
-        let newEnemies = [];
-        if (enemies > length) {
-            for (let i = 0; i < enemies.length; i++) {
-                if (!enemies[i].isDead) {
-                    newEnemies.push(enemies[i]);
-                }
-            }
-        }
-        return newEnemies;
-    }
-
     draw(game) {
         if (this.enemies.length > 0) {
-            for ( let i = 0; i < this.enemies.length; i++) {
-                enemies[i].draw();
+            for (let i = 0; i < this.enemies.length; i++) {
+                this.enemies[i].draw(game);
             }
         }
     }

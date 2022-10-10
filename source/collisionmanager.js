@@ -53,7 +53,7 @@ export default class CollideManager {
                 let distance = Math.sqrt((cells[i].obstacle.centerX - player.x)*(cells[i].obstacle.centerX - player.x) + (cells[i].obstacle.centerY - player.y)*(cells[i].obstacle.centerY - player.y));
                 let vCollisionNorm = {x: vCollision.x/distance, y: vCollision.y/distance};
                 // console.log(vCollisionNorm);
-                console.log(distance);
+                //console.log(distance);
                 player.x += vCollisionNorm.x * 1; 
                 player.y += vCollisionNorm.y * 1;
                 //player.x += 2.5 * Math.cos(-player.radian);

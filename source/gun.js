@@ -6,10 +6,8 @@ export default class Gun {
         this.x = x;
         this.y = y;
         this.radian = 0
-
         this.recoil = 0;
-        this.fireRate = 25;
-
+        this.fireRate = 50 ;
         //hitbox gun data
         this.nwX = x;
         this.nwY = y;

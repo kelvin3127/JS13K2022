@@ -24,11 +24,11 @@ export default class Enemy {
     update() {   
     }
 
-    draw() {
+    draw(game) {
         if (!this.isDead) {
             game.context.fillStyle = 'blue';
             game.context.beginPath();
-            game.context.arc(this.enemies[i].x, this.enemies[i].y, this.enemies[i].radius, 0, 2*Math.PI)
+            game.context.arc(this.x, this.y, this.radius, 0, 2*Math.PI)
             game.context.fill();
         }
     }
