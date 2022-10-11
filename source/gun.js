@@ -35,8 +35,6 @@ export default class Gun {
         this.g6 = {};
         this.g7 = {};
         this.g8 = {};
-
-        
     }
     update(game, radian, x,y) {
         this.radian = radian;
