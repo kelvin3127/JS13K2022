@@ -1,68 +1,41 @@
-import Tree from './tree.js';
-import {
-  seededRandomBetween,
-  } from './util.js';
+import Cell from "./cell.js";
 
-//formerly 'Grid' class
 export default class World {
-
-  constructor({r = 0, size = 100, game = {seed: ''}}){
-
-    this.radius = r * size;
-    this.x = r;
-    this.y = r;
-    this.size = size;
-    this.grid = [];
-    this.game = game;
-
-    const PADDING = 20;
-
-    for (let x = -this.x; x < this.x; x++) {
-      for (let y = -this.y; y < this.y; y++) {
-        this.grid[x] = this.grid[x] || [];
-
-        if( Math.sqrt((x*size - size/2) * (x*size - size/2) + (y*size - size/2) * (y*size - size/2)) < r * size ) {
-          this.grid[x][y] = new Tree({
-            x: seededRandomBetween(`${x}:${x}:${y}`, this.game.seed, x * this.size + PADDING, (x+1) * this.size - PADDING),
-            y: seededRandomBetween(`${y}:${x}:${y}`, this.game.seed, y * this.size + PADDING, (y+1) * this.size - PADDING),
-            trunkRadius: seededRandomBetween(`${x}:${x}:${y}`, this.game.seed, 10, 20),
-            leafRadius: seededRandomBetween(`${x}:${x}:${y}`, this.game.seed, 70, 150),
-          });
-        } else {
-          this.grid[x][y] = null;
-        }
-      }
+    constructor (game) {
+        this.game = game;
+        this.size = 150;
+        this.obsCount = 25;
+        this.dist = 1000;
+        this.drawable = true;
+        this.cells = [];
+        this.id = 1;
+        this.mapWidth = 2*game.canvas.width;
+        this.mapHeight = 2*game.canvas.height;
+        
+        for (let i = -game.canvas.width; i < game.canvas.width; i+= this.dist) {
+            for (let j = -game.canvas.height; j < game.canvas.height; j+= this.dist) {
+                this.cells.push(new Cell(this.id,i,j,this.dist));
+                this.id += 1;  
+            }
+        }        
+    
     }
 
-  }
+    inView(game, obj) {
+        const { player, width, height } = game;
+        return obj.x > player.x - height/2 - this.size &&
+          obj.x < player.x + height/2 + this.size &&
+          obj.y > player.y - height/2 - this.size &&
+          obj.y < player.y + height/2 + this.size;
 
-  inView(game, obj) {
-
-    const { player, width, height } = game;
-
-    return obj.x > player.x - height/2 - this.size &&
-      obj.x < player.x + height/2 + this.size &&
-      obj.y > player.y - height/2 - this.size&&
-      obj.y < player.y + height/2 + this.size;
-
-  }
-
-  draw(game) {
-
-    let drawCount = 0;
-
-    for (let x = -this.x; x < this.x; x++) {
-      for (let y = -this.y; y < this.y; y++) {
-        const tree = this.grid[x][y];
-        if(tree && this.inView(game, tree)){
-          drawCount++;
-          tree.draw(game);
-        }
       }
+
+    draw(game) {
+        for (let i = 0; i < this.cells.length; i++) {
+            if (this.inView(game, this.cells[i].obstacle)) {
+                this.cells[i].obstacle.draw(game);
+            }
+        } 
     }
-
-    //game.debugger.add(`Trees: ${drawCount}`);
-
-  }
 
 }

@@ -131,7 +131,7 @@ export default class Player {
         return;
       }
 
-      //Right hand
+/*       //Right hand
       game.context.fillStyle = '#C02942';
       game.context.beginPath();
       const a1 = rotatePoint(this.x, this.y, this.radian, this.x, this.y + 22);
@@ -194,14 +194,14 @@ export default class Player {
       const right = rotatePoint(this.x, this.y, this.radian, this.x + this.radius * 0.8, this.y + this.radius * 0.3);
       game.context.beginPath();
       game.context.arc(right.x, right.y, this.radius * 0.1, 0, 2*Math.PI );
-      game.context.fill();
+      game.context.fill(); */
      
       //DEBUG
       //centerpoint
-      // game.context.fillStyle = 'yellow';
-      // game.context.beginPath();
-      // game.context.arc(this.x,this.y,5,0,2*Math.PI);
-      // game.context.fill();
+      game.context.fillStyle = 'yellow';
+      game.context.beginPath();
+      game.context.arc(this.x,this.y,5,0,2*Math.PI);
+      game.context.fill();
 
       //hitbox
       game.context.beginPath();

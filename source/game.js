@@ -5,7 +5,7 @@ import Mouse from './mouse.js';
 import Keyboard from './keyboard.js';
 import Gamestate from './gamestate.js';
 import Timer from './timer.js';
-import World from './world2.js';
+import World from './world.js';
 import BulletManager from './bulletmanager.js';
 import CollideManager from './collisionmanager.js';
 import EnemyManager from './enemymanager.js';

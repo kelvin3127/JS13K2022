@@ -17,7 +17,7 @@ export default class Obstacle {
 
         //Hitbox data
         this.hitRadius = this.radius;
-        if (this.type == 1) {
+        if (this.type === 1) {
             this.nwX = this.x;
             this.nwY = this.y;
             this.swX = this.x;
@@ -31,7 +31,7 @@ export default class Obstacle {
             this.nwX = this.x-this.radius;
             this.nwY = this.y-this.radius;
             this.swX = this.x-this.radius;
-            this.swY = this.y+this.radius
+            this.swY = this.y+this.radius;
             this.neX = this.x+this.radius;
             this.neY = this.y-this.radius;
             this.seX = this.x+this.radius;
@@ -42,12 +42,12 @@ export default class Obstacle {
 
     setCenter() {
         //circle
-        if (this.type == 0) {
+        if (this.type === 0) {
             this.centerX = this.x;
             this.centerY = this.y;
         }
         //rect
-        if (this.type == 1) {
+        if (this.type === 1) {
             this.centerX = this.x + this.width/2;
             this.centerY = this.y + this.height/2;
         }
@@ -62,14 +62,14 @@ export default class Obstacle {
 
     draw(game) {   
         //circle 
-        if (this.type == 0) {
+        if (this.type === 0) {
             game.context.fillStyle = 'red';
             game.context.beginPath();
-            game.context.arc(this.x, this.y, this.radius, 0, 2*Math.PI)
+            game.context.arc(this.x, this.y, this.hitRadius, 0, 2*Math.PI)
             game.context.fill();
         }
         //rect
-        if (this.type == 1) {
+        if (this.type === 1) {
             game.context.fillStyle = 'red'
             game.context.beginPath();
             game.context.rect(this.x, this.y, this.width, this.height);
