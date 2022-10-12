@@ -18,6 +18,7 @@ export default class Projectile {
       this.negmaxY = y - 500*Math.sin(this.radian);
       
       //Hitbox data
+      this.hitRadius = this.radius;
       this.nwX = 0;
       this.nwY = 0;
       this.swX = 0;

@@ -20,7 +20,6 @@ export default class EnemyManager {
                 }
             }
         }
-        //console.log(newEnemies.length);
         return newEnemies;
     }
 
@@ -40,12 +39,10 @@ export default class EnemyManager {
                 this.spawnTimer = 0;
             }
         }
+        //behavior
         if (this.enemies.length > 0) {
-            //behavior
             for (let i = 0; i < this.enemies.length; i++) {
-                let dir = Math.atan2(game.player.y - this.enemies[i].y, game.player.x - this.enemies[i].x);
-                this.enemies[i].x += this.enemies[i].speed * Math.cos(dir);
-                this.enemies[i].y += this.enemies[i].speed * Math.sin(dir);
+                this.enemies[i].update(game);
             }
         }
         this.enemies = this.refreshEnemies(this.enemies);

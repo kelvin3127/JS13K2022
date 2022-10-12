@@ -9,8 +9,9 @@ export default class Player {
       this.vx = 0;
       this.vy = 0;
       this.radius = 12;
-
       //Hitbox data
+      this.hitRadius = 16;
+      this.type = 0;
       this.nwX = this.x - 20;
       this.nwY = this.y + 12;
       this.swX = this.x - 20;
@@ -197,15 +198,15 @@ export default class Player {
      
       //DEBUG
       //centerpoint
-      game.context.fillStyle = 'yellow';
-      game.context.beginPath();
-      game.context.arc(this.x,this.y,5,0,2*Math.PI);
-      game.context.fill();
+      // game.context.fillStyle = 'yellow';
+      // game.context.beginPath();
+      // game.context.arc(this.x,this.y,5,0,2*Math.PI);
+      // game.context.fill();
 
       //hitbox
-      game.context.strokeStyle = 'red';
       game.context.beginPath();
-      game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
+      game.context.arc(this.x,this.y,this.hitRadius,0,2*Math.PI);
+      game.context.strokeStyle = 'blue';
       game.context.stroke();
 
     }

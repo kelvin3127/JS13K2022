@@ -16,6 +16,7 @@ export default class Obstacle {
         this.speed = 0;
 
         //Hitbox data
+        this.hitRadius = this.radius;
         if (this.type == 1) {
             this.nwX = this.x;
             this.nwY = this.y;
@@ -75,8 +76,8 @@ export default class Obstacle {
             game.context.fill();
         }
         //hitbox
-        game.context.beginPath();
-        game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
-        game.context.stroke();
+        // game.context.beginPath();
+        // game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
+        // game.context.stroke();
     } 
 }

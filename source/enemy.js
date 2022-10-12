@@ -9,8 +9,10 @@ export default class Enemy {
         this.damage = 5;
         this.health = 10;
         this.isDead = false;
+        this.dir = 0;
 
         //Hitbox data
+        this.hitRadius = 8;
         this.nwX = 0;
         this.nwY = 0;
         this.swX = 0;
@@ -21,7 +23,18 @@ export default class Enemy {
         this.seY = 0;
     }
 
-    update() {   
+    update(game) {
+        this.nwX = this.x - this.radius;
+        this.nwY = this.y - this.radius;
+        this.swX = this.x - this.radius;
+        this.swY = this.y + this.radius;
+        this.neX = this.x + this.radius;
+        this.neY = this.y - this.radius;
+        this.seX = this.x + this.radius;
+        this.seY = this.y + this.radius;
+        this.dir = Math.atan2(game.player.y - this.y, game.player.x - this.x);
+        this.x += this.speed * Math.cos(this.dir);
+        this.y += this.speed * Math.sin(this.dir);
     }
 
     draw(game) {
