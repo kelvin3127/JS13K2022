@@ -40,22 +40,22 @@ export default class Gun {
         this.radian = radian;
         this.x = x;
         this.y = y;
-        this.g1 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y);
-        this.g2 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y - 2);
-        this.g3 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y + 2);
-        this.g4 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y + 2);
-        this.g5 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y -4);
-        this.g6 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y - 4);
-        this.g7 = rotatePoint(this.x, this.y, this.radian, this.x+27.5, this.y + 4);
-        this.g8 = rotatePoint(this.x, this.y, this.radian, this.x+12, this.y + 4);
-        this.nwX = this.g1.x;
-        this.nwY = this.g1.y;
-        this.swX = this.g2.x;
-        this.swY = this.g2.y;
-        this.neX = this.g3.x;
-        this.neY = this.g3.y;
-        this.seX = this.g4.x;
-        this.seY = this.g4.y;
+        // this.g1 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y);
+        // this.g2 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y - 2);
+        // this.g3 = rotatePoint(this.x, this.y, this.radian, this.x+40, this.y + 2);
+        // this.g4 = rotatePoint(this.x, this.y, this.radian, this.x+20, this.y + 2);
+        this.g5 = rotatePoint(this.x, this.y, this.radian, this.x+18, this.y -11);
+        this.g6 = rotatePoint(this.x, this.y, this.radian, this.x+24, this.y - 11);
+        this.g7 = rotatePoint(this.x, this.y, this.radian, this.x+24, this.y - 15);
+        this.g8 = rotatePoint(this.x, this.y, this.radian, this.x+18, this.y - 15);
+        this.nwX = this.g5.x;
+        this.nwY = this.g5.y;
+        this.swX = this.g6.x;
+        this.swY = this.g6.y;
+        this.neX = this.g7.x;
+        this.neY = this.g7.y;
+        this.seX = this.g8.x;
+        this.seY = this.g8.y;
         this.gunnwX = this.g5.x;
         this.gunnwY = this.g5.y;
         this.gunswX = this.g6.x;
@@ -74,14 +74,14 @@ export default class Gun {
         }
     }
     draw(game) {
-      game.context.fillStyle = '#929292';
-      game.context.beginPath()      
-      game.context.moveTo(this.g1.x, this.g1.y);
-      game.context.lineTo(this.g2.x, this.g2.y);      
-      game.context.lineTo(this.g3.x, this.g3.y);      
-      game.context.lineTo(this.g4.x, this.g4.y)
-      game.context.stroke();
-      game.context.fill();
+    //   game.context.fillStyle = '#929292';
+    //   game.context.beginPath()      
+    //   game.context.moveTo(this.g1.x, this.g1.y);
+    //   game.context.lineTo(this.g2.x, this.g2.y);      
+    //   game.context.lineTo(this.g3.x, this.g3.y);      
+    //   game.context.lineTo(this.g4.x, this.g4.y)
+    //   game.context.stroke();
+    //   game.context.fill();
 
       game.context.fillStyle = '#929292';
       game.context.beginPath()      
