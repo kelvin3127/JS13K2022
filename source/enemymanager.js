@@ -1,5 +1,4 @@
 import Enemy from "./enemy.js";
-import {arcTan} from "./util.js";
 
 export default class EnemyManager {
     constructor(game) {

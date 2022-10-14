@@ -48,14 +48,8 @@ export default class CollideManager {
                     }
                 }
             }
-            //player to obstaa
+            //player to obst
             if (this.isCollide(player, cells[i].obstacle)) {
-                //let vCollision = {x: cells[i].obstacle.centerX - player.x, y: cells[i].obstacle.centerX - player.y}
-                //let distance = Math.sqrt((cells[i].obstacle.centerX - player.x)*(cells[i].obstacle.centerX - player.x) + (cells[i].obstacle.centerY - player.y)*(cells[i].obstacle.centerY - player.y));
-                //let vCollisionNorm = {x: vCollision.x/distance, y: vCollision.y/distance};
-                //player.x += vCollisionNorm.x * 0.5; 
-                //player.y += vCollisionNorm.y * 0.5;
-                //console.log("this happened"); 
                 let distance_x = player.x - cells[i].obstacle.x;
                 let distance_y = player.y - cells[i].obstacle.y;
                 let length = Math.sqrt(distance_x ** 2 + distance_y**2);
@@ -64,10 +58,8 @@ export default class CollideManager {
                 player.x = cells[i].obstacle.x + (player.hitRadius + cells[i].obstacle.hitRadius) * unit_x;
                 player.y = cells[i].obstacle.y + (player.hitRadius + cells[i].obstacle.hitRadius) * unit_y;
             }
-            else {
-
-            }
-            //gun to obst
+            //enemies to obst
+            
         }
         //enemies
         for (let i = 0;i < enemies.length;i++) {
