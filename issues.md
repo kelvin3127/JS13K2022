@@ -10,11 +10,7 @@
         ii. shooting has no satisfaction to it
         iii. we can: add muzzle flash to cover the beginning bullet animation
         iv.  make bullet shoot faster to make it seem stronger
-2. Movement
-    a. Player movement doesn't have enough feedback
-        i. if there is NOTHING on screen, player doesn't know if they are moving
-        ii. we can add footsteps/ move animation + sound effect
-3. Object Collision
+2. Object Collision
     a. Bullet to Enemy
         i. when bullet hits enemy, no feedback
         ii. we can: add knockback, animation or sound effect when enemy is hit
@@ -25,4 +21,12 @@
     c. Player to Enemy
         i. when player is hit by enemy, no feedback
         ii. player should be knocked back, enemy should not be knocked back
+3. Player Drawing
+    a. Player Arm Drawing
+        i. The Arms fo not fill properly
+4. Flashlight
+    a. Placement
+        i. Where should it be placed Player.js or Gun.js.
+        ii. OnClick flashlight Flashes ( assuming placed in Gun.js).
+
     

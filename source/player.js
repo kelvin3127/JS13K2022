@@ -131,52 +131,96 @@ export default class Player {
         return;
       }
 
-      //New Left Hand
-      game.context.strokeStyle = ""
-
        //Right hand
-       game.context.fillStyle = '#C02942';
-       game.context.beginPath()
-       const rh1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y+ 10);
-       game.context.moveTo(rh1.x, rh1.y);
-       const rh2 = rotatePoint(this.x, this.y, this.radian, this.x+17, this.y + 10);
-       game.context.lineTo(rh2.x, rh2.y);
-       const rh3= rotatePoint(this.x, this.y, this.radian, this.x+17, this.y + 16.5);
-       game.context.lineTo(rh3.x, rh3.y);
-       const rh4 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y + 16.5);
-       game.context.lineTo(rh4.x, rh4.y)
-       game.context.fill(); 
+      //  game.context.fillStyle = '#C02942';
+      //  game.context.beginPath()
+      //  const la1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y+ 10);
+      //  game.context.moveTo(la1.x, la1.y);
+      //  const la2 = rotatePoint(this.x, this.y, this.radian, this.x+17, this.y + 10);
+      //  game.context.lineTo(la2.x, la2.y);
+      //  const la3= rotatePoint(this.x, this.y, this.radian, this.x+17, this.y + 16.5);
+      //  game.context.lineTo(la3.x, la3.y);
+      //  const la4 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y + 16.5);
+      //  game.context.lineTo(la4.x, la4.y)
+      //  game.context.fill(); 
 
-      //  game.contect.fillStyle = '#3b3c36';
-      //  game.context.beginPath();
-      //  const rh5= rotatePoint(this.x, this.y, this.radian, this.x)
+      //Right hand
+      //  game.context.fillStyle = '#C02942';
+      //  game.context.beginPath()
+      //  const ra1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y - 10);
+      //  game.context.moveTo(ra1.x, ra1.y);
+      //  const ra2 = rotatePoint(this.x, this.y, this.radian, this.x+17, tsdsahis.y - 10);
+      //  game.context.lineTo(ra2.x, ra2.y);
+      //  const ra3= rotatePoint(this.x, this.y, this.radian, this.x+17, this.y - 16.5);
+      //  game.context.lineTo(ra3.x, ra3.y);
+      //  const ra4 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y - 16.5);
+      //  game.context.lineTo(ra4.x, ra4.y)
+      //  game.context.fill(); 
+
+      
+
+      // Right Arm
+      game.context.strokeStyle = '#C02942';
+      game.context.beginPath(); 
+      const ra1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y + 15)
+      game.context.moveTo(ra1.x, ra1.y);
+      const ra2 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y + 13)
+      const ra3 = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y + 3)
+      const ra4 = rotatePoint(this.x, this.y, this.radian, this.x + 22, this.y - 5)
+      game.context.bezierCurveTo( ra2.x, ra2.y, ra3.x, ra3.y, ra4.x, ra4.y);
+      game.context.moveTo(ra4.x, ra4.y);
+      const ra5 = rotatePoint(this.x, this.y, this.radian, this.x + 20, this.y -8)
+      const ra6 = rotatePoint(this.x, this.y, this.radian, this.x + 18, this.y - 5)
+      game.context.quadraticCurveTo(ra5.x, ra5.y, ra6.x, ra6.y);
+      game.context.moveTo( ra6.x, ra6.y)
+      const ra7 = rotatePoint(this.x, this.y, this.radian, this.x + 9, this.y + 13)
+      const ra8 = rotatePoint(this.x, this.y, this.radian, this.x + 6, this.y + 3)
+      const ra9 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y + 10)
+      game.context.bezierCurveTo( ra7.x, ra7.y, ra8.x, ra8.y, ra9.x, ra9.y);
+      game.context.moveTo(ra1.x, ra1.y);
+      game.context.stroke();
+
+      //Right Hand
+      game.context.fillStyle = '#F1D4AF';
+      game.context.beginPath();
+      const rh = rotatePoint(this.x, this.y , this.radian, this.x + 22, this.y - 6);
+      game.context.arc( rh.x , rh.y, 3, 0, 2*Math.PI );
+      game.context.fill()
+
+      
+
+      //Left Arm
+      game.context.strokeStyle = '#C02942';
+      game.context.beginPath(); 
+      const la1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y - 15)
+      game.context.moveTo(la1.x, la1.y);
+      const la2 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y - 15)
+      const la3 = rotatePoint(this.x, this.y, this.radian, this.x + 25, this.y - 5)
+      const la4 = rotatePoint(this.x, this.y, this.radian, this.x + 28, this.y + 2)
+      game.context.bezierCurveTo( la2.x, la2.y, la3.x, la3.y, la4.x, la4.y);
+      game.context.moveTo(la4.x, la4.y);
+      const la5 = rotatePoint(this.x, this.y, this.radian, this.x + 25.5, this.y + 5)
+      const la6 = rotatePoint(this.x, this.y, this.radian, this.x + 23, this.y + 2)
+      game.context.quadraticCurveTo(la5.x, la5.y, la6.x, la6.y);
+      game.context.moveTo( la6.x, la6.y)
+      const la7 = rotatePoint(this.x, this.y, this.radian, this.x + 9, this.y - 15)
+      const la8 = rotatePoint(this.x, this.y, this.radian, this.x + 6, this.y - 5)
+      const la9 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y - 10)
+      game.context.bezierCurveTo( la7.x, la7.y, la8.x, la8.y, la9.x, la9.y);
+      game.context.moveTo(la1.x, la1.y);
+      game.context.stroke();
+
+      
+      //Left Hand
+      game.context.fillStyle = '#F1D4AF';
+      game.context.beginPath();
+      const lh = rotatePoint(this.x, this.y , this.radian, this.x + 26, this.y + 2);
+      game.context.arc( lh.x , lh.y, 3, 0, 2*Math.PI );
+      game.context.fill()
 
 
-      //Left hand
-      game.context.fillStyle = '#C02942';
-      game.context.beginPath()
-      const lh1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y-9);
-      game.context.moveTo(lh1.x, lh1.y);
-      const lh2 = rotatePoint(this.x, this.y, this.radian, this.x+14, this.y - 9);
-      game.context.lineTo(lh2.x, lh2.y);
-      const lh3 = rotatePoint(this.x, this.y, this.radian, this.x+14, this.y - 17);
-      game.context.lineTo(lh3.x, lh3.y);
-      const lh4 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y -17);
-      game.context.lineTo(lh4.x, lh4.y)
-      game.context.fill(); 
 
-      //Left hand
-      game.context.fillStyle = '#C02942';
-      game.context.beginPath()
-      const lh5 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y-9);
-      game.context.moveTo(lh5.x, lh5.y);
-      const lh6 = rotatePoint(this.x, this.y, this.radian, this.x+17, this.y - 9);
-      game.context.lineTo(lh6.x, lh6.y);
-      const lh7= rotatePoint(this.x, this.y, this.radian, this.x+17, this.y - 17);
-      game.context.lineTo(lh7.x, lh7.y);
-      const lh8 = rotatePoint(this.x, this.y, this.radian, this.x + 15, this.y -17);
-      game.context.lineTo(lh8.x, lh8.y)
-      game.context.fill(); 
+
 
       //Draw Torso
       
@@ -206,7 +250,7 @@ export default class Player {
       // game.context.lineTo(rt4.x, rt4.y)
       // game.context.fill(); 
 
-      //New Left Torso
+      //Left Torso
       game.context.fillStyle = '#7F9EA1';
       game.context.beginPath();
       const lt1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y -3);
@@ -218,7 +262,7 @@ export default class Player {
       game.context.fill();
 
 
-      //New Right Torso
+      //Right Torso
       game.context.fillStyle = '#7F9EA1';
       game.context.beginPath();
       const rt1 = rotatePoint(this.x, this.y, this.radian, this.x + 5, this.y + 3);
@@ -274,10 +318,10 @@ export default class Player {
       // game.context.fill();
 
       //hitbox
-      game.context.beginPath();
-      game.context.arc(this.x,this.y,this.hitRadius,0,2*Math.PI);
-      game.context.strokeStyle = 'blue';
-      game.context.stroke();
+      // game.context.beginPath();
+      // game.context.arc(this.x,this.y,this.hitRadius,0,2*Math.PI);
+      // game.context.strokeStyle = 'blue';
+      // game.context.stroke();
 
     }
   }
