@@ -4,12 +4,28 @@ import {rotatePoint} from './util.js';
 export default class Player {
 
     constructor( x, y ) {
+      //Player data
       this.x = x;
       this.y = y;
       this.vx = 0;
       this.vy = 0;
+      this.speed = 0.3;
       this.radius = 11;
+      this.radian = 0      
+      this.death = false;
+      this.friction = 0.9;
+      this.health = 7;
+      this.maxHealth = 7;
+
+      //Weapon data
+      this.ammo = 0;
+      this.bulletClip = [];
+      this.shooting = false;
+      this.reload = false;
+      this.gun = new Gun(this.x, this.y);
+
       //Hitbox data
+      this.colliding = false;
       this.hitRadius = 16;
       this.type = 0;
       this.nwX = this.x - 20;
@@ -20,28 +36,7 @@ export default class Player {
       this.neY = this.y + 12;
       this.seX = this.x + 20;
       this.seY = this.y - 12;
-
-      this.radian = 0
-      this.radianTest = 0;
-      
-      this.speed = 0.3;
-      this.colliding = false;
-      this.death = false;
-      this.health = 100;
-      this.ammo = 0;
-      this.friction = 0.9;
-
-      this.bulletClip = [];
-
-      this.shooting = false;
-
-      this.reload = false;
-
-      this.gun = new Gun(this.x, this.y);
-
     }
-
-    resolveCollision(obj) {}
 
     //pickup health or ammo
     onPickup(item) {

@@ -3,12 +3,15 @@ import {rotatePoint} from './util.js';
 
 export default class Gun {
     constructor(x,y) {
+        //Gun data
         this.x = x;
         this.y = y;
         this.radian = 0
         this.recoil = 0;
-        this.fireRate = 50 ;
-        //hitbox gun data
+        this.fireRate = 50;
+        this.damage = 1;
+
+        //Hitbox data
         this.nwX = x;
         this.nwY = y;
         this.swX = x;

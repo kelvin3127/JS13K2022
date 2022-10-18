@@ -1,14 +1,16 @@
 export default class Enemy {
     constructor(x,y,type=0) {
+        //Enemy data
         this.x = x;
         this.y = y;
         this.radius = 8;
         this.hitradius = 8;
         this.type = type;
-        this.setSpeed = 0.6;
-        this.speed = this.setSpeed;
-        this.damage = 5;
-        this.health = 10;
+        this.maxSpeed = 0.8;
+        this.speed = 0.6;
+        this.speed_delta = 0.005;
+        this.damage = 1;
+        this.health = 3;
         this.isDead = false;
         this.dir = 0;
 
@@ -36,6 +38,12 @@ export default class Enemy {
         this.dir = Math.atan2(game.player.y - this.y, game.player.x - this.x);
         this.x += this.speed * Math.cos(this.dir);
         this.y += this.speed * Math.sin(this.dir);
+        if (this.speed < this.maxSpeed) {
+            this.speed += this.speed_delta;
+        }
+        if (this.health === 0) {
+            this.isDead = true;
+        }
     }
 
     draw(game) {

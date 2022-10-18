@@ -9,7 +9,7 @@ import World from './world.js';
 import BulletManager from './bulletmanager.js';
 import CollideManager from './collisionmanager.js';
 import EnemyManager from './enemymanager.js';
-
+import Hud from './hud.js';
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
 export default class Game {
@@ -118,6 +118,7 @@ export default class Game {
 
         this.timer = new Timer();
 
+		this.hud = new Hud(this);
         //this.messages.add('Survive Death', 60*2);
 
         this.gameState.set('PLAYING');
@@ -157,6 +158,7 @@ export default class Game {
 
 				this.collideManager.update(this);
 
+				this.hud.update(this);
 				//this.messages.update();
 
 				break;
@@ -219,6 +221,9 @@ export default class Game {
 
 				//Draw Timer
 				this.timer.draw(this);
+
+				//Draw Hud
+				this.hud.draw(this);
 
 				//Draw Message
 				//this.messages.draw(this);
