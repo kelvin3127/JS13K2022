@@ -44,7 +44,7 @@ export default class CollideManager {
             if (bullets.length > 0) {
                 for (let j = 0; j < bullets.length; j++) {
                     if (this.isCollide(bullets[j], cells[i].obstacle)) {
-                        bullets[j].isDestroyed = true;   
+                        bullets[j].isDestroyed = true;
                     }
                 }
             }
@@ -59,7 +59,18 @@ export default class CollideManager {
                 player.y = cells[i].obstacle.y + (player.hitRadius + cells[i].obstacle.hitRadius) * unit_y;
             }
             //enemies to obst
-            
+            for (let j = 0; j < enemies.length;j++) {
+                if (this.isCollide(enemies[j], cells[i].obstacle)) {
+                    let distance_x = enemies[j].x - cells[i].obstacle.x;
+                    let distance_y = enemies[j].y - cells[i].obstacle.y;
+                    let length = Math.sqrt(distance_x ** 2 + distance_y ** 2);
+                    let unit_x = distance_x/length;
+                    let unit_y = distance_y/length;
+                    enemies[j].x = cells[i].obstacle.x + (enemies[j].hitradius + cells[i].obstacle.hitRadius) * unit_x;
+                    enemies[j].y = cells[i].obstacle.y + (enemies[j].hitradius + cells[i].obstacle.hitRadius) * unit_y;
+
+                }
+            }
         }
         //enemies
         for (let i = 0;i < enemies.length;i++) {

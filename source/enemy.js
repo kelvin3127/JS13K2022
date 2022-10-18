@@ -3,6 +3,7 @@ export default class Enemy {
         this.x = x;
         this.y = y;
         this.radius = 8;
+        this.hitradius = 8;
         this.type = type;
         this.setSpeed = 0.6;
         this.speed = this.setSpeed;
