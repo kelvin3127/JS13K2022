@@ -1,4 +1,5 @@
 import Gun from './gun.js';
+import Flashlight from './flashlight.js';
 import {rotatePoint} from './util.js';
 
 export default class Player {
@@ -23,6 +24,7 @@ export default class Player {
       this.shooting = false;
       this.reload = false;
       this.gun = new Gun(this.x, this.y);
+      this.flashlight = new Flashlight(this.x, this.y);
 
       //Hitbox data
       this.colliding = false;
@@ -95,6 +97,9 @@ export default class Player {
       // update gun  
       this.gun.update(game, this.radian, this.x, this.y);
 
+      // update flashlight
+      this.flashlight.update(game, this.radian, this.x, this.y);
+
       // apply friction
       this.vx *= this.friction;
       this.vy *= this.friction;
@@ -115,8 +120,9 @@ export default class Player {
   }
 
     draw(game) {
-
+      this.flashlight.draw(game);
       this.gun.draw(game);
+     
       
       if(this.dead) {
         game.context.fillStyle = 'red';
