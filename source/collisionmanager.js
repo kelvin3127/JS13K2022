@@ -66,8 +66,8 @@ export default class CollideManager {
                     let length = Math.sqrt(distance_x ** 2 + distance_y ** 2);
                     let unit_x = distance_x/length;
                     let unit_y = distance_y/length;
-                    enemies[j].x = cells[i].obstacle.x + (enemies[j].hitradius + cells[i].obstacle.hitRadius) * unit_x;
-                    enemies[j].y = cells[i].obstacle.y + (enemies[j].hitradius + cells[i].obstacle.hitRadius) * unit_y;
+                    enemies[j].x = cells[i].obstacle.x + (enemies[j].hitRadius + cells[i].obstacle.hitRadius) * unit_x;
+                    enemies[j].y = cells[i].obstacle.y + (enemies[j].hitRadius + cells[i].obstacle.hitRadius) * unit_y;
                 }
             }
         }
@@ -83,11 +83,25 @@ export default class CollideManager {
             }
             //player to enemies
             if (this.isCollide(player, enemies[i])) {
-                let invertedDir = (enemies[i].dir + Math.PI) % (2 * Math.PI); 
+                //let invertedDir = (enemies[i].dir + Math.PI) % (2 * Math.PI); 
                 player.x += 30 * Math.cos(enemies[i].dir);
                 player.y += 30 * Math.sin(enemies[i].dir);
                 player.health -= enemies[i].damage;
                 enemies[i].speed = 0;
+            }
+            //enemies to enemies
+            for (let j = 0; j < enemies.length; j++) {
+                if (enemies[j].id != enemies[i].id) {
+                    if (this.isCollide(enemies[j],enemies[i])) {
+                        let distance_x = enemies[j].x - enemies[i].x;
+                        let distance_y = enemies[j].y - enemies[i].y;
+                        let length = Math.sqrt(distance_x ** 2 + distance_y ** 2);
+                        let unit_x = distance_x/length;
+                        let unit_y = distance_y/length;
+                        enemies[j].x = enemies[i].x + (enemies[j].hitRadius + enemies[i].hitRadius) * unit_x;
+                        enemies[j].y = enemies[i].y + (enemies[j].hitRadius + enemies[i].hitRadius) * unit_y;
+                    }
+                }
             }
         }
     }

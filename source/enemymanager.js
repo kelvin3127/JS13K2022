@@ -2,6 +2,7 @@ import Enemy from "./enemy.js";
 
 export default class EnemyManager {
     constructor(game) {
+        this.enem_id = 0;
         this.enemies = [];
         this.maxEnemy = 10;
         this.spawns = [[-game.width, -game.height], [game.width, -game.height], [game.width, game.height], [game.width, -game.height]];
@@ -29,7 +30,8 @@ export default class EnemyManager {
                 for (let i = 0; i < this.maxEnemy; i++) {
                         let x = this.spawns[this.spawnIndex][0];
                         let y = this.spawns[this.spawnIndex][1];
-                        this.enemies.push(new Enemy(x,y));
+                        this.enemies.push(new Enemy(this.enem_id,x,y));
+                        this.enem_id += 1;
                         this.spawnIndex += 1;
                         if (this.spawnIndex === 4) {
                             this.spawnIndex = 0;

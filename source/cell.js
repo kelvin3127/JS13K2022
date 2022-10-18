@@ -11,6 +11,7 @@ export default class Cell {
 
         this.obsX = randomBetweenInt(this.topleftX + this.padding, this.length - this.padding);
         this.obsY = randomBetweenInt(this.topleftY + this.padding, this.length - this.padding);
-        this.obstacle = new Obstacle(this.obsX,this.obsY,0);
+        this.obstacle = null;
+        //this.obstacle = new Obstacle(this.obsX,this.obsY,0);
     }
 }

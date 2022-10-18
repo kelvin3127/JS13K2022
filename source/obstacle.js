@@ -2,7 +2,8 @@ import { randomBetween } from "./util.js";
 
 export default class Obstacle {
 
-    constructor(x,y,type) {
+    constructor(id,x,y,type) {
+        this.id = id;
         this.x = x;
         this.y = y;
         this.type = type;

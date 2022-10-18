@@ -1,10 +1,11 @@
 export default class Enemy {
-    constructor(x,y,type=0) {
+    constructor(id,x,y,type=0) {
         //Enemy data
+        this.id = id;
         this.x = x;
         this.y = y;
         this.radius = 8;
-        this.hitradius = 8;
+        this.hitRadius = 8;
         this.type = type;
         this.maxSpeed = 0.8;
         this.speed = 0.6;
