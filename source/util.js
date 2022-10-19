@@ -15,6 +15,7 @@ export const isBetween = (x, low, high) => {
   ; 
 }
 
+
 export const seededRandomBetween = (string = '', seed = '', min = 0, max = 1) => {
   let hash = 0;
   string += seed;
