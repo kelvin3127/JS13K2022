@@ -12,19 +12,30 @@ export default class World {
         this.cells = [];
         this.cell_id = 0;
         this.obst_id = 0;
-        this.mapWidth = 2*game.canvas.width;
-        this.mapHeight = 2*game.canvas.height;
-        
-        for (let i = -game.canvas.width; i < game.canvas.width; i+= this.dist) {
-            for (let j = -game.canvas.height; j < game.canvas.height; j+= this.dist) {
-                this.cells.push(new Cell(this.cell_id,i,j,this.dist));
-                let lastCell = this.cells[this.cells.length-1];
-                lastCell.obstacle = new Obstacle(this.obst_id,lastCell.obsX,lastCell.obsY);
-                this.cell_id += 1; 
-                this.obst_id += 1;
+        //Bitmap data
+        this.x = 0;
+        this.y = 0;
+        this.mapWidth = 30;
+        this.mapHeight = 30;
+        this.length = 40;
+        this.obst_spawnRate = 5;
+
+        for (let i = 0; i < this.mapHeight; i++) {
+            let row = [];
+            for (let j = 0; j < this.mapWidth; j++) {
+                row.push(new Cell(this.cell_id,this.x,this.y,this.length));
+                this.cell_id += 1;
+                if (randomBetweenInt(1,100) <= this.obst_spawnRate) {
+                    row[row.length-1].obstacle = new Obstacle(this.obst_id,this.x,this.y,this.length);
+                    this.obst_id += 1;
+                }
+                this.x += this.length;
             }
-        }        
-    
+            this.cells.push(row);
+            this.x = 0;
+            this.y += this.length;
+        //console.table(this.cells);
+        }
     }
 
     inView(game, obj) {
@@ -38,10 +49,20 @@ export default class World {
 
     draw(game) {
         for (let i = 0; i < this.cells.length; i++) {
-            if (this.inView(game, this.cells[i].obstacle)) {
-                this.cells[i].obstacle.draw(game);
-            }
-        } 
-    }
+            for (let j = 0; j < this.cells[i].length; j++) {
+                //DEBUG - DRAW CELL LINES
 
+                game.context.strokeStyle = 'white';
+                game.context.beginPath();
+                game.context.rect(this.cells[i][j].x, this.cells[i][j].y, this.cells[i][j].length, this.cells[i][j].length);
+                game.context.stroke();
+    
+                if (this.cells[i][j].obstacle != null) {
+                    if (this.inView(game, this.cells[i][j].obstacle)) {
+                        this.cells[i][j].obstacle.draw(game);
+                    }
+                }
+            }
+        }
+    }
 }

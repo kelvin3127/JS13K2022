@@ -4,8 +4,7 @@ export default class Enemy {
         this.id = id;
         this.x = x;
         this.y = y;
-        this.radius = 8;
-        this.hitRadius = 8;
+        this.radius = 12;
         this.type = type;
         this.maxSpeed = 0.8;
         this.speed = 0.6;
@@ -16,7 +15,7 @@ export default class Enemy {
         this.dir = 0;
 
         //Hitbox data
-        this.hitRadius = 8;
+        this.hitRadius = this.radius;
         this.nwX = 0;
         this.nwY = 0;
         this.swX = 0;
