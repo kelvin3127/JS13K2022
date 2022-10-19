@@ -42,6 +42,10 @@ export default class Game {
 		this.canvas.height = this.height;
 		this.mouse = new Mouse(this.canvas);
 
+		//Canvas Shake
+		this.shakeX = Math.random()*10;
+		this.shakeY = Math.random()*10;
+
 		//Canvas Context
         this.context = this.canvas.getContext('2d');
 
@@ -70,6 +74,27 @@ export default class Game {
 		this.gradient.addColorStop(0.1, 'rgba(0,0,0,1)');
 
     }
+	//Screenshake
+	preShake() {
+		this.canvas.save();
+		this.canvas.translate(shakeX, shakeY);  
+	}
+
+	postShake() {
+		this.canvas.restore();
+	  }
+
+	animate() {
+		// erase
+		context.clearRect(0,0,this.canvas.width, this.canvas.height);
+		req = requestAnimationFrame(animate);
+		this.preShake();
+		this.postShake();
+	}
+	stopAnimate() {
+		cancelAnimationFrame(req)
+	}
+
 
 	loop() {
 
