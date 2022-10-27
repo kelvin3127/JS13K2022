@@ -188,7 +188,6 @@ export default class Player {
       game.context.arc( rh.x , rh.y, 3, 0, 2*Math.PI );
       game.context.fill()
 
-      
 
       //Left Arm
       game.context.strokeStyle = '#C02942';

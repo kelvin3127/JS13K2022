@@ -61,7 +61,8 @@ export default class Gun {
         if (game.mouse.pressed && this.recoil <= 0) {
             this.recoil = this.fireRate;
             let bullet = new Projectile(this.swX +2,this.swY ,this.radian);
-            game.bulletManager.addProjectile(bullet); 
+            game.bulletManager.addProjectile(bullet);
+            
         }
     }
     draw(game) {
