@@ -74,27 +74,7 @@ export default class Game {
 		this.gradient.addColorStop(0.1, 'rgba(0,0,0,1)');
 
     }
-	//Screenshake
-	preShake() {
-		this.canvas.save();
-		this.canvas.translate(shakeX, shakeY);  
-	}
-
-	postShake() {
-		this.canvas.restore();
-	  }
-
-	animate() {
-		// erase
-		context.clearRect(0,0,this.canvas.width, this.canvas.height);
-		req = requestAnimationFrame(animate);
-		this.preShake();
-		this.postShake();
-	}
-	stopAnimate() {
-		cancelAnimationFrame(req)
-	}
-
+	
 
 	loop() {
 

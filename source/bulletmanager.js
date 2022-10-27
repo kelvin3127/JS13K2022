@@ -1,4 +1,6 @@
 
+import animate from "./animate.js";
+
 export default class BulletManager {
     constructor() {
         this.clip = [];
