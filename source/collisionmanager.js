@@ -3,18 +3,18 @@ export default class CollideManager {
         this.broadTest = [];  
     }
 
+/*     rayCollide(ray, obj) {
+        if (ray.a.x, 
+        
+        ray.a.x
+        ray.a.y
+    } */
+
     isCollide(objA, objB) {
         //assuming both obj are circles
         let squareDist = (objA.x - objB.x) ** 2 + (objA.y - objB.y) ** 2
         let squareRadius = (objA.hitRadius + objB.hitRadius)**2
         return squareDist <= squareRadius;
-        // // horizontal gap
-        // if (objA.nwX > objB.seX || objB.nwX > objA.seX) return false;
-
-        // // has vertical gap
-        // if (objA.nwY > objB.seY || objB.nwY > objA.seY) return false;
-    
-        // return true;
     }
 
     update(game) {

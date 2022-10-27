@@ -24,6 +24,15 @@ export default class Enemy {
         this.neY = 0;
         this.seX = 0;
         this.seY = 0;
+
+        if (this.type === 1) {
+            this.radius = 24;
+            this.maxSpeed = 1.5;
+            this.speed = 0.8;
+            this.speed_delta = 0.005;
+            this.health = 10;
+        }
+
     }
 
     update(game) {
