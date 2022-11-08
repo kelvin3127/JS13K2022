@@ -57,6 +57,7 @@ export default class CollideManager {
                             enemies[k].y = cells[i][j].obstacle.y + (enemies[k].hitRadius + cells[i][j].obstacle.hitRadius) * unit_y;
                         }
                     }
+                    
                 }
             }
         }

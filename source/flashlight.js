@@ -28,6 +28,7 @@ export default class Flashlight{
             a: {x:0, y:0},
             b: {x:0, y:0}
         }
+        this.rays=[];
 
     }
     update(game, radian, x,y) {
@@ -60,10 +61,7 @@ export default class Flashlight{
             a: {x:game.player.x, y:game.player.y},
             b: {x:game.player.x + this.maxDistance*Math.cos(game.player.radian+0.7), y:game.player.y + this.maxDistance*Math.sin(game.player.radian+0.7)}
         }
-
-        // this.light = this.game.context.createLinearGradient( fl1.x, fl1.x, fl2.x, fl3.x);
-		// this.light.addColorStop(0,'rgba(0,0,0,0.3');
-		// this.light.addColorStop(0.1, 'rgba(0,0,0,1)');
+        this.rays = [this.test_ray,this.test_ray_1,this.test_ray_2];
     }
 
     raycast() {
