@@ -11,13 +11,7 @@
           
         /* Get the 2D context of the canvas  */
         var ctx = canvas.getContext("2d");
-          
-        /* Fills or sets the color,gradient,pattern */
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = "50px Arial";
-        ctx.fillStyle = "black";
-          
+ 
         /* Writes the required text  */
         ctx.fillText("o", vx, vy)
         let particles = [];
@@ -71,7 +65,7 @@
                 particles.push(particle);
             }
             explode();
-        }, 3000);
+        }, 4000);
   
         /* Particle explosion function */
         function explode() {
