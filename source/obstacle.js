@@ -8,36 +8,24 @@ export default class Obstacle {
         this.y = y;
         this.type = type;
         this.cell_length = cell_length;
-        this.width = randomBetween(this.cell_length/2, this.cell_length);
-        this.height = randomBetween(this.cell_length/2, this.cell_length);
-        this.radius = randomBetween(this.cell_length/6, this.cell_length/3);
+        this.width = this.cell_length;
+        this.height = this.cell_length;
+        this.radius = this.cell_length/2 ;
         this.objState = false;
         this.dmg = 0;
         this.speed = 0;
 
         //Hitbox data
         this.hitRadius = this.radius;
+        //rectangle
         if (this.type === 1) {
-            this.nwX = this.x;
-            this.nwY = this.y;
-            this.swX = this.x;
-            this.swY = this.y+this.height;
-            this.neX = this.x+this.width;
-            this.neY = this.y;
-            this.seX = this.x+this.width;
-            this.seY = this.y+this.height;
+            this.centerX = this.x + this.width/2;
+            this.centerY = this.y + this.height/2;
         }
+        //circle
         else if (this.type === 0) {
             this.x = (this.x + this.x + this.cell_length)/2;
             this.y = (this.y + this.y + this.cell_length)/2;
-            this.nwX = this.x-this.radius;
-            this.nwY = this.y-this.radius;
-            this.swX = this.x-this.radius;
-            this.swY = this.y+this.radius;
-            this.neX = this.x+this.radius;
-            this.neY = this.y-this.radius;
-            this.seX = this.x+this.radius;
-            this.seY = this.y+this.radius; 
         }
     }    
 

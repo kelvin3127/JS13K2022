@@ -3,18 +3,31 @@ export default class CollideManager {
         this.broadTest = [];  
     }
 
-/*     rayCollide(ray, obj) {
-        if (ray.a.x, 
-        
-        ray.a.x
-        ray.a.y
-    } */
-
     isCollide(objA, objB) {
         //assuming both obj are circles
         let squareDist = (objA.x - objB.x) ** 2 + (objA.y - objB.y) ** 2
         let squareRadius = (objA.hitRadius + objB.hitRadius)**2
         return squareDist <= squareRadius;
+    }
+    isCollideCircletoRect(circleObj, rectObj) {
+        let distX = Math.abs(circleObj.x - rectObj.centerX);
+        let distY = Math.abs(circleObj.y - rectObj.centerY);
+        let dx = distX - rectObj.width/2;
+        let dy = distY - rectObj.height/2;
+        //distance test
+        if (distX > (rectObj.width/2 + circleObj.radius)) {
+            return false;
+        }
+        if (distY > (rectObj.height/2 + circleObj.radius)) {
+            return false;
+        }
+        if (distX <= (rectObj.width/2)) {
+            return true;
+        }
+        if (distY <= (rectObj.height/2)) {
+            return true;
+        }
+        return (dx*dx + dy*dy) <= (circleObj.radius * circleObj.radius);
     }
 
     update(game) {
@@ -28,22 +41,41 @@ export default class CollideManager {
             for (let j = 0; j < cells[i].length; j++) {
                 if (cells[i][j].obstacle != null) {
                     //bullet to obst
-                    if (bullets.length > 0) {
-                        for (let k = 0; k < bullets.length; k++) {
+                    for (let k = 0; k < bullets.length; k++) {
+                        if (cells[i][j].obstacle.type === 1) {
+                            if (this.isCollideCircletoRect(bullets[k],cells[i][j].obstacle)) {
+                                bullets[k].isDestroyed = true;
+                            }
+                        }
+                        else {
                             if (this.isCollide(bullets[k], cells[i][j].obstacle)) {
                                 bullets[k].isDestroyed = true;
                             }
                         }
                     }
                     //player to obst
-                    if (this.isCollide(player, cells[i][j].obstacle)) {
-                        let distance_x = player.x - cells[i][j].obstacle.x;
-                        let distance_y = player.y - cells[i][j].obstacle.y;
-                        let length = Math.sqrt(distance_x ** 2 + distance_y**2);
-                        let unit_x = distance_x/length;
-                        let unit_y = distance_y/length;
-                        player.x = cells[i][j].obstacle.x + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_x;
-                        player.y = cells[i][j].obstacle.y + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_y;
+                    if (cells[i][j].obstacle.type === 1) {
+                        if (this.isCollideCircletoRect(player,cells[i][j].obstacle)) {
+                            console.log("bullet to obst works");
+                            let distance_x = player.x - cells[i][j].obstacle.x;
+                            let distance_y = player.y - cells[i][j].obstacle.y;
+                            let length = Math.sqrt(distance_x ** 2 + distance_y**2);
+                            let unit_x = distance_x/length;
+                            let unit_y = distance_y/length;
+                            player.x = cells[i][j].obstacle.x + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_x;
+                            player.y = cells[i][j].obstacle.y + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_y;
+                        }
+                    }
+                    else {
+                        if (this.isCollide(player, cells[i][j].obstacle)) {
+                            let distance_x = player.x - cells[i][j].obstacle.x;
+                            let distance_y = player.y - cells[i][j].obstacle.y;
+                            let length = Math.sqrt(distance_x ** 2 + distance_y**2);
+                            let unit_x = distance_x/length;
+                            let unit_y = distance_y/length;
+                            player.x = cells[i][j].obstacle.x + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_x;
+                            player.y = cells[i][j].obstacle.y + (player.hitRadius + cells[i][j].obstacle.hitRadius) * unit_y;
+                        }
                     }
                     //enemies to obst
                     for (let k = 0; k < enemies.length; k++) {
@@ -57,7 +89,12 @@ export default class CollideManager {
                             enemies[k].y = cells[i][j].obstacle.y + (enemies[k].hitRadius + cells[i][j].obstacle.hitRadius) * unit_y;
                         }
                     }
-                    
+                    for (let k = 0;k < player.flashlight.rays; k++) {
+                        let player_obstRay = {
+                            x: Math.abs(player.flashlight.rays[k].a.x - cells[i][j].x),
+                            y: Math.abs(player.flashlight.rays[k].a.y - cells[i][j].y)
+                        }
+                    }
                 }
             }
         }

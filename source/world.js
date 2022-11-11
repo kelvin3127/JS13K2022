@@ -26,7 +26,7 @@ export default class World {
                 row.push(new Cell(this.cell_id,this.x,this.y,this.length));
                 this.cell_id += 1;
                 if (randomBetweenInt(1,100) <= this.obst_spawnRate) {
-                    row[row.length-1].obstacle = new Obstacle(this.obst_id,this.x,this.y,this.length);
+                    row[row.length-1].obstacle = new Obstacle(this.obst_id,this.x,this.y,this.length,1);
                     this.obst_id += 1;
                 }
                 this.x += this.length;
