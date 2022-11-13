@@ -36,12 +36,12 @@ export default class Flashlight{
         this.y = y;
 
         //Flashlight Object
-        this.f1 = rotatePoint(this.x, this.y, this.radian, this.x+ 20, this.y - 7.5);
-        this.f2 = rotatePoint(this.x, this.y, this.radian, this.x+ 28, this.y - 7.5);
-        this.f3 = rotatePoint(this.x, this.y, this.radian, this.x+ 32, this.y - 9);
-        this.f4 = rotatePoint(this.x, this.y, this.radian, this.x+ 32, this.y - 3);
-        this.f5 = rotatePoint(this.x, this.y, this.radian, this.x+ 28, this.y - 4.5);
-        this.f6 = rotatePoint(this.x, this.y, this.radian, this.x+ 20, this.y - 4.5);
+        this.f1 = rotatePoint(this.x, this.y, this.radian, this.x+ 5, this.y + 5);
+        this.f2 = rotatePoint(this.x, this.y, this.radian, this.x+ 7, this.y + 5);
+        this.f3 = rotatePoint(this.x, this.y, this.radian, this.x+ 10, this.y + 6);
+        this.f4 = rotatePoint(this.x, this.y, this.radian, this.x+ 10, this.y + 2);
+        this.f5 = rotatePoint(this.x, this.y, this.radian, this.x+ 7, this.y + 3);
+        this.f6 = rotatePoint(this.x, this.y, this.radian, this.x+ 5, this.y + 3);
 
         //Actual Light
         this.fl1 = rotatePoint(this.x, this.y, this.radian, this.x+ 28, this.y - 6);
