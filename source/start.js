@@ -14,10 +14,10 @@ export default class Start {
         game.context.fillStyle = '#FF005A';
         game.context.textAlign = 'center';
         game.context.font = '150px Serif';
-        game.context.fillText('Still Alive', game.width/2, game.height*0.4);
+        game.context.fillText('Shooter', game.width/2, game.height*0.4);
         game.context.fillStyle = 'white';
         game.context.font = '40px Serif';
-        game.context.fillText('Try\' to stay Alive', game.width/2, game.height*0.55);
+        game.context.fillText('A random game', game.width/2, game.height*0.55);
     
         if (Math.sin(game.frame/15) > 0.2) {
           game.context.fillStyle = 'white';

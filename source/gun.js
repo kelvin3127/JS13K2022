@@ -43,10 +43,10 @@ export default class Gun {
         this.radian = radian;
         this.x = x;
         this.y = y;
-        this.g1 = rotatePoint(this.x, this.y, this.radian, this.x+ 25, this.y + 0);
-        this.g2 = rotatePoint(this.x, this.y, this.radian, this.x+ 35, this.y + 0);
-        this.g3 = rotatePoint(this.x, this.y, this.radian, this.x+ 35, this.y + 4);
-        this.g4 = rotatePoint(this.x, this.y, this.radian, this.x+ 25, this.y + 4);
+        this.g1 = rotatePoint(this.x, this.y, this.radian, this.x+ 10, this.y + -3.5);
+        this.g2 = rotatePoint(this.x, this.y, this.radian, this.x+ 18, this.y + -3.5);
+        this.g3 = rotatePoint(this.x, this.y, this.radian, this.x+ 18, this.y );
+        this.g4 = rotatePoint(this.x, this.y, this.radian, this.x+ 10, this.y );
         this.nwX = this.g1.x;
         this.nwY = this.g1.y;
         this.swX = this.g2.x;
