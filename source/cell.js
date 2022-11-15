@@ -8,5 +8,6 @@ export default class Cell {
         this.y = y;
         this.length = length;
         this.obstacle = null;
+        this.isVisible = true;
     }
 }

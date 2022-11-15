@@ -17,6 +17,7 @@ export default class Player {
       this.friction = 0.9;
       this.health = 7;
       this.maxHealth = 7;
+      this.cellPos;
 
       //Weapon data
       this.ammo = 0;
@@ -51,6 +52,10 @@ export default class Player {
     }
 
     update(game) {
+      this.cellPos = {
+        x: Math.floor(this.x / game.cellLength),
+        y: Math.floor(this.y / game.cellLength)
+      }
       const {keyboard, mouse} = game;
       const {width, height} = game;
 

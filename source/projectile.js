@@ -1,6 +1,7 @@
 export default class Projectile {
     //x, y, angle of the player
     constructor(x, y, radian) {
+      //Projectile data
       this.x = x;
       this.y = y;
       this.radius = 2.5;
@@ -10,7 +11,7 @@ export default class Projectile {
       this.radian = radian;
       this.projectFrames = 0;
       this.speed = 9;
-      
+
       //Calculate max bullet draw distance
       this.maxX = x + 500*Math.cos(this.radian);
       this.maxy = y + 500*Math.sin(this.radian);
@@ -27,7 +28,6 @@ export default class Projectile {
       this.neY = 0;
       this.seX = 0;
       this.seY = 0;
-
     }
 
     update() {

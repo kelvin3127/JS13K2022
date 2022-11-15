@@ -35,6 +35,9 @@ export default class Game {
         //Map Size - should be multiples of 100
         this.width = window.innerWidth;
         this.height = window.innerHeight;
+		
+		//Cell Length - determine size of each cell
+		this.cellLength = 40;
 
         //Canvas
         this.canvas = document.getElementById('mainCanvas');
@@ -119,7 +122,7 @@ export default class Game {
 
         this.player = new Player(this.canvas.width/2, this.canvas.height/2);
 
-		this.world = new World(this);
+		this.world = new World(this,this.cellLength);
 
         this.timer = new Timer();
 

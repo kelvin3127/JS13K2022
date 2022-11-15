@@ -2,18 +2,22 @@ import { randomBetween } from "./util.js";
 
 export default class Obstacle {
 
-    constructor(id,x,y,cell_length,type=0) {
+    constructor(id,x,y,cellLength,type=0) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.type = type;
-        this.cell_length = cell_length;
-        this.width = this.cell_length;
-        this.height = this.cell_length;
-        this.radius = this.cell_length/2 ;
+        this.cellLength = cellLength;
+        this.width = this.cellLength;
+        this.height = this.cellLength;
+        this.radius = this.cellLength/2 ;
         this.objState = false;
         this.dmg = 0;
         this.speed = 0;
+        this.cellPos = {
+            x: Math.floor(this.cellLength),
+            y: Math.floor(this.cellLength)
+        };
 
         //Hitbox data
         this.hitRadius = this.radius;
@@ -24,8 +28,8 @@ export default class Obstacle {
         }
         //circle
         else if (this.type === 0) {
-            this.x = (this.x + this.x + this.cell_length)/2;
-            this.y = (this.y + this.y + this.cell_length)/2;
+            this.x = (this.x + this.x + this.cellLength)/2;
+            this.y = (this.y + this.y + this.cellLength)/2;
         }
     }    
 

@@ -3,7 +3,7 @@ import Obstacle from "./obstacle.js";
 import { randomBetweenInt } from "./util.js";
 
 export default class World {
-    constructor (game) {
+    constructor (game, cellLength) {
         this.game = game;
         this.size = 150;
         this.obsCount = 25;
@@ -17,23 +17,23 @@ export default class World {
         this.y = 0;
         this.mapWidth = 30;
         this.mapHeight = 30;
-        this.length = 40;
+        this.cellLength = 40;
         this.obst_spawnRate = 5;
 
         for (let i = 0; i < this.mapHeight; i++) {
             let row = [];
             for (let j = 0; j < this.mapWidth; j++) {
-                row.push(new Cell(this.cell_id,this.x,this.y,this.length));
+                row.push(new Cell(this.cell_id,this.x,this.y,this.cellLength));
                 this.cell_id += 1;
                 if (randomBetweenInt(1,100) <= this.obst_spawnRate) {
-                    row[row.length-1].obstacle = new Obstacle(this.obst_id,this.x,this.y,this.length,1);
+                    row[row.length-1].obstacle = new Obstacle(this.obst_id,this.x,this.y,this.cellLength);
                     this.obst_id += 1;
                 }
-                this.x += this.length;
+                this.x += this.cellLength;
             }
             this.cells.push(row);
             this.x = 0;
-            this.y += this.length;
+            this.y += this.cellLength;
         //console.table(this.cells);
         }
     }
@@ -44,7 +44,6 @@ export default class World {
           obj.x < player.x + height/2 + this.size &&
           obj.y > player.y - height/2 - this.size &&
           obj.y < player.y + height/2 + this.size;
-
       }
 
     draw(game) {
