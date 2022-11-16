@@ -50,12 +50,18 @@ export default class World {
         for (let i = 0; i < this.cells.length; i++) {
             for (let j = 0; j < this.cells[i].length; j++) {
                 //DEBUG - DRAW CELL LINES
-
                 game.context.strokeStyle = 'white';
                 game.context.beginPath();
-                game.context.rect(this.cells[i][j].x, this.cells[i][j].y, this.cells[i][j].length, this.cells[i][j].length);
+                game.context.rect(this.cells[i][j].x, this.cells[i][j].y, this.cells[i][j].cellLength, this.cells[i][j].cellLength);
                 game.context.stroke();
     
+                if (this.cells[i][j].inView) {
+                    game.context.fillStyle = 'green';
+                    game.context.beginPath();
+                    game.context.rect(this.cells[i][j].x, this.cells[i][j].y, this.cells[i][j].cellLength,this.cells[i][j].cellLength);
+                    game.context.fill();
+                }
+
                 if (this.cells[i][j].obstacle != null) {
                     if (this.inView(game, this.cells[i][j].obstacle)) {
                         this.cells[i][j].obstacle.draw(game);

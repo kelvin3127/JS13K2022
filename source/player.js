@@ -12,28 +12,23 @@ export default class Player {
       this.vy = 0;
       this.speed = 0.3;
       this.radius = 6;
-      this.radian = 0      
+      this.radian = 0;
+      this.fovRadius = 7;  
       this.death = false;
       this.friction = 0.9;
       this.health = 7;
       this.maxHealth = 7;
-<<<<<<< HEAD
-      this.cellPos;
-=======
-      this.footMax = 4;
-      this.footMin = -16;
-      this.lfootChange = false;
-      this.rfootChange = false;
-
+      this.cellPos = {
+        x:0,
+        y:0
+      }
       this.playerState = [
         "active",
         "static", 
         "damaged",
         "dead"
       ];
-
-    this.currState = "static";
->>>>>>> 66dbbeb631d5cf8ff1dfa58b989b2c151541a4d7
+      this.currState = "static";
 
       //Weapon data
       this.ammo = 0;
@@ -56,10 +51,13 @@ export default class Player {
       this.seX = this.x + 20;
       this.seY = this.y - 12;
 
+      //Animation data
+      this.footMax = 4;
+      this.footMin = -16;
+      this.lfootChange = false;
+      this.rfootChange = false;
       this.lfeetX = -6;
       this.rfeetX = -6;
-
-
     }
 
     //pickup health or ammo
@@ -78,7 +76,15 @@ export default class Player {
           this.death = true;
           //chagne gamestate
       }
-    }
+  }
+
+    inView(object) {
+      let xDiff = Math.abs(this.cellPos.x - object.cellPos.x);
+      let yDiff = Math.abs(this.cellPos.y - object.cellPos.y);
+      //console.log(object.id, object.cellPos.x);
+      //console.log(object.cellPos.y, object.cellPos.y);
+      return (xDiff + yDiff) <= this.fovRadius; 
+  }
 
     update(game) {
       this.cellPos = {
@@ -223,7 +229,7 @@ export default class Player {
         game.context.fill();
 
       }
-      // Right Armw
+      // Right Arm
       {
         game.context.fillStyle = '#3b7f8e';
         game.context.beginPath(); 

@@ -39,6 +39,10 @@ export default class CollideManager {
         //obstacles
         for (let i = 0;i < cells.length; i++) {
             for (let j = 0; j < cells[i].length; j++) {
+                if (player.inView(cells[i][j])) {
+                    //fov
+                    cells[i][j].inView = true;
+                }
                 if (cells[i][j].obstacle != null) {
                     //bullet to obst
                     for (let k = 0; k < bullets.length; k++) {
@@ -56,7 +60,7 @@ export default class CollideManager {
                     //player to obst
                     if (cells[i][j].obstacle.type === 1) {
                         if (this.isCollideCircletoRect(player,cells[i][j].obstacle)) {
-                            console.log("bullet to obst works");
+                            //console.log("bullet to obst works");
                             let distance_x = player.x - cells[i][j].obstacle.x;
                             let distance_y = player.y - cells[i][j].obstacle.y;
                             let length = Math.sqrt(distance_x ** 2 + distance_y**2);

@@ -92,32 +92,32 @@ export default class Flashlight{
 
     draw(game) { 
 
-    //Flashlight
-    game.context.fillStyle = '#929292';
-    game.context.beginPath();      
-    game.context.moveTo(this.f1.x, this.f1.y);
-    game.context.lineTo(this.f2.x, this.f2.y); 
-    game.context.lineTo(this.f3.x, this.f3.y);      
-    game.context.lineTo(this.f4.x, this.f4.y); 
-    game.context.lineTo(this.f5.x, this.f5.y);      
-    game.context.lineTo(this.f6.x, this.f6.y)
-    game.context.fill();
+/*         //Flashlight
+        game.context.fillStyle = '#929292';
+        game.context.beginPath();      
+        game.context.moveTo(this.f1.x, this.f1.y);
+        game.context.lineTo(this.f2.x, this.f2.y); 
+        game.context.lineTo(this.f3.x, this.f3.y);      
+        game.context.lineTo(this.f4.x, this.f4.y); 
+        game.context.lineTo(this.f5.x, this.f5.y);      
+        game.context.lineTo(this.f6.x, this.f6.y)
+        game.context.fill();
 
-    game.context.strokeStyle = 'black';
-    game.context.beginPath();
-    game.context.moveTo(this.test_ray.a.x, this.test_ray.a.y);
-    game.context.lineTo(this.test_ray.b.x, this.test_ray.b.y);
-    game.context.stroke();
-    game.context.strokeStyle = 'red';
-    game.context.beginPath();
-    game.context.moveTo(this.test_ray_1.a.x, this.test_ray_1.a.y);
-    game.context.lineTo(this.test_ray_1.b.x, this.test_ray_1.b.y);
-    game.context.stroke();
-    game.context.strokeStyle = 'purple';
-    game.context.beginPath();
-    game.context.moveTo(this.test_ray_2.a.x, this.test_ray_2.a.y);
-    game.context.lineTo(this.test_ray_2.b.x, this.test_ray_2.b.y);
-    game.context.stroke();
+        game.context.strokeStyle = 'black';
+        game.context.beginPath();
+        game.context.moveTo(this.test_ray.a.x, this.test_ray.a.y);
+        game.context.lineTo(this.test_ray.b.x, this.test_ray.b.y);
+        game.context.stroke();
+        game.context.strokeStyle = 'red';
+        game.context.beginPath();
+        game.context.moveTo(this.test_ray_1.a.x, this.test_ray_1.a.y);
+        game.context.lineTo(this.test_ray_1.b.x, this.test_ray_1.b.y);
+        game.context.stroke();
+        game.context.strokeStyle = 'purple';
+        game.context.beginPath();
+        game.context.moveTo(this.test_ray_2.a.x, this.test_ray_2.a.y);
+        game.context.lineTo(this.test_ray_2.b.x, this.test_ray_2.b.y);
+        game.context.stroke(); */
 
     // game.context.fillStyle = "#FDEB71";
     // game.context.beginPath();
@@ -126,11 +126,6 @@ export default class Flashlight{
     // game.context.lineTo(this.fl3.x, this.fl3.y);
     // game.context.lineTo(this.fl1.x, this.fl1.y);
     // game.context.fill();
-
-
-      
-
-      
     }
     
 }

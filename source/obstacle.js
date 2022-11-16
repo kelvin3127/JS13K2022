@@ -7,6 +7,7 @@ export default class Obstacle {
         this.x = x;
         this.y = y;
         this.type = type;
+        this.color = 'red';
         this.cellLength = cellLength;
         this.width = this.cellLength;
         this.height = this.cellLength;
@@ -15,8 +16,8 @@ export default class Obstacle {
         this.dmg = 0;
         this.speed = 0;
         this.cellPos = {
-            x: Math.floor(this.cellLength),
-            y: Math.floor(this.cellLength)
+            x: Math.floor(this.x/this.cellLength),
+            y: Math.floor(this.y/this.cellLength)
         };
 
         //Hitbox data
@@ -36,14 +37,14 @@ export default class Obstacle {
     draw(game) {   
         //circle 
         if (this.type === 0) {
-            game.context.fillStyle = 'red';
+            game.context.fillStyle = this.color;
             game.context.beginPath();
             game.context.arc(this.x, this.y, this.hitRadius, 0, 2*Math.PI);
             game.context.fill();
         }
         //rect
         if (this.type === 1) {
-            game.context.fillStyle = 'red';
+            game.context.fillStyle = this.color;
             game.context.beginPath();
             game.context.rect(this.x, this.y, this.width, this.height);
             game.context.fill();
@@ -53,4 +54,5 @@ export default class Obstacle {
         // game.context.rect(this.nwX,this.nwY,this.seX-this.nwX,this.seY-this.nwY);
         // game.context.stroke();
     } 
+
 }
