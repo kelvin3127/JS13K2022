@@ -43,7 +43,7 @@ export default class CollideManager {
                     //fov
                     cells[i][j].inView = true;
                 }
-                if (cells[i][j].obstacle != null) {
+                if (cells[i][j].inView && cells[i][j].obstacle != null) {
                     //bullet to obst
                     for (let k = 0; k < bullets.length; k++) {
                         if (cells[i][j].obstacle.type === 1) {
