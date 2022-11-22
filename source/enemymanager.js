@@ -5,7 +5,8 @@ export default class EnemyManager {
         this.enem_id = 0;
         this.enemies = [];
         this.maxEnemy = 0;
-        this.spawns = [[-game.width, -game.height], [game.width, -game.height], [game.width, game.height], [game.width, -game.height]];
+        //this.spawns = [[-game.width, -game.height], [game.width, -game.height], [game.width, game.height], [game.width, -game.height]];
+        this.spawns = [[0, 0]];
         this.spawnIndex = 0;
         this.spawnTimer = 0;
         this.spawnRate = 300;
