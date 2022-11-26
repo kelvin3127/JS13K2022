@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Mode</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <header>
+  </header>
+  <body>
+    <canvas id="mainCanvas"></canvas>
+    <form onsubmit = "return false" id="debugForm">
+      <input type="text" id="playerSpeed" placeholder="Player Speed">
+      <input type="text" id="playerX" placeholder="Player X">
+      <input type="text" id="playerY" placeholder="Player Y">
+      <input type="text" id="enemySpeed" placeholder="Enemy Speed">
+      <input type="text" id="maxEnemy" placeholder="Max Enemies">
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <section id="currentValues">
+      <div id="current_playerSpeed"></div>
+      <div id="current_enemySpeed"></div>
+      <div id="current_playerX"></div>
+      <div id="current_playerY"></div>
+    </section>
+  </body>
+  <script type = "module" src=main.js></script>
+  <script type = "module" src=game.js></script>
+  <script type = "module" src=player.js></script>
+  <script type = "module" src=util.js></script>
+  <script type = "module" src=messages.js></script>
+  <script type = "module" src=start.js></script>
+  <script type = "module" src=end.js></script>
+  <script type = "module" src=keyboard.js></script>
+  <script type = "module" src=box.js></script>
+  <script type = "module" src=world.js></script>
+  <script type = "module" src=timer.js></script>
+</html>

@@ -10,6 +10,7 @@ import BulletManager from './bulletmanager.js';
 import CollideManager from './collisionmanager.js';
 import EnemyManager from './enemymanager.js';
 import Hud from './hud.js';
+import Debug from './debug.js';
 import { randomIntInRange, generateSeed, magnitude } from './util.js';
 
 export default class Game {
@@ -22,12 +23,14 @@ export default class Game {
         this.end = new End();
         this.timer = null;
 		this.fps = 0;
+
         //The Game States
+		this.currentHtml = window.location.pathname.split("/").pop();
         this.gameState = new Gamestate([
 			'PLAYING',
 			'PAUSED',
 			'MENU',
-			'END',
+			'END'
 		]);
         //Default State Start
         this.gameState.set('MENU');
@@ -127,6 +130,8 @@ export default class Game {
         this.timer = new Timer();
 
 		this.hud = new Hud(this);
+
+		this.debug = new Debug(this);
         //this.messages.add('Survive Death', 60*2);
 
         this.gameState.set('PLAYING');
@@ -142,7 +147,6 @@ export default class Game {
 	}
 
     update() {
-
 		//Check State
 		switch (this.gameState.get()) {
 			case 'MENU':
@@ -168,6 +172,11 @@ export default class Game {
 
 				this.hud.update(this);
 				//this.messages.update();
+
+				//check for debug mode
+				if (this.currentHtml === 'debug.html') {
+					this.debug.update(this);
+				}
 
 				break;
 			case 'END':

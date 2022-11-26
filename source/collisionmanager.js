@@ -42,6 +42,8 @@ export default class CollideManager {
                 if (player.inView(cells[i][j])) {
                     //fov
                     cells[i][j].inView = true;
+                    //add cells[i][j] to inViewArray
+                    //
                 }
                 if (cells[i][j].inView && cells[i][j].obstacle != null) {
                     //bullet to obst

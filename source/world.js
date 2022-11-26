@@ -39,6 +39,7 @@ export default class World {
     }
 
     inView(game, obj) {
+        //determines if cell in World is visible
         const { player, width, height } = game;
         return obj.x > player.x - height/2 - this.size &&
           obj.x < player.x + height/2 + this.size &&
