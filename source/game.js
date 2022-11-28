@@ -32,6 +32,7 @@ export default class Game {
 			'MENU',
 			'END'
 		]);
+
         //Default State Start
         this.gameState.set('MENU');
 
@@ -131,7 +132,9 @@ export default class Game {
 
 		this.hud = new Hud(this);
 
-		this.debug = new Debug(this);
+		if (this.currentHtml === 'debug.hmtl') {
+			this.debug = new Debug(this);
+		}
         //this.messages.add('Survive Death', 60*2);
 
         this.gameState.set('PLAYING');

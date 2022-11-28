@@ -1,6 +1,8 @@
 export default class CollideManager {
     constructor() {     
+        //broadTest and inView may actually be the same thing lol
         this.broadTest = [];  
+        this.inView = [];
     }
 
     isCollide(objA, objB) {
@@ -40,10 +42,9 @@ export default class CollideManager {
         for (let i = 0;i < cells.length; i++) {
             for (let j = 0; j < cells[i].length; j++) {
                 if (player.inView(cells[i][j])) {
-                    //fov
+                    //preprocess cells in view
                     cells[i][j].inView = true;
-                    //add cells[i][j] to inViewArray
-                    //
+                    this.inView.push(cells[i][j]);
                 }
                 if (cells[i][j].inView && cells[i][j].obstacle != null) {
                     //bullet to obst
@@ -62,7 +63,7 @@ export default class CollideManager {
                     //player to obst
                     if (cells[i][j].obstacle.type === 1) {
                         if (this.isCollideCircletoRect(player,cells[i][j].obstacle)) {
-                            //console.log("bullet to obst works");
+                            //console.log("player to obst works");
                             let distance_x = player.x - cells[i][j].obstacle.x;
                             let distance_y = player.y - cells[i][j].obstacle.y;
                             let length = Math.sqrt(distance_x ** 2 + distance_y**2);

@@ -40,12 +40,20 @@ export default class World {
 
     inView(game, obj) {
         //determines if cell in World is visible
+        //to be deprecated
         const { player, width, height } = game;
         return obj.x > player.x - height/2 - this.size &&
           obj.x < player.x + height/2 + this.size &&
           obj.y > player.y - height/2 - this.size &&
           obj.y < player.y + height/2 + this.size;
       }
+
+    shadowCast(game) {
+        let prevTile;
+        for (let i=0; i < game.collideManager.inView;i++) {
+            //iterate thru list of cells in view
+        }
+        }
 
     draw(game) {
         for (let i = 0; i < this.cells.length; i++) {
@@ -70,5 +78,12 @@ export default class World {
                 }
             }
         }
+        //new draw stuff here
+/*         for (let i = 0; i < game.collideManager.inView.length; i++) {
+            if (game.collideManager.inView[i].obstacle != null) {
+                game.collideManager.inView[i].obstacle.draw(game);
+            }
+        } */
+
     }
 }
